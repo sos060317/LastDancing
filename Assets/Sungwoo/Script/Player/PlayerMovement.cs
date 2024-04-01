@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private float turnSpeedMultiplier;
 
     private bool isWalk;
+    private bool isAttacking;
 
     private Animator anim;
 
@@ -51,6 +52,19 @@ public class PlayerMovement : MonoBehaviour
         }
 
         #endregion
+
+        #region 공격키 입력 로직
+
+        if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
+        {
+            isAttacking = true;
+        }
+        else
+        {
+            isAttacking = false;
+        }
+
+        #endregion 
     }
 
     private void AnimationUpdate()
@@ -60,18 +74,31 @@ public class PlayerMovement : MonoBehaviour
 
     private void TargetDirectionUpdate()
     {
-        turnSpeedMultiplier = 1f;
-        var forward = mainCamera.transform.TransformDirection(Vector3.forward);
-        forward.y = 0;
+        // 공격중이 아니면 이동방향으로 회전
+        if (!isAttacking)
+        {
+            turnSpeedMultiplier = 1f;
+            var forward = mainCamera.transform.TransformDirection(Vector3.forward);
+            forward.y = 0;
 
-        var right = mainCamera.transform.TransformDirection(Vector3.right);
+            var right = mainCamera.transform.TransformDirection(Vector3.right);
 
-        targetDirection = inputVec.x * right + inputVec.y * forward;
+            targetDirection = inputVec.x * right + inputVec.y * forward;
+        }
+        else
+        {
+            Debug.Log("마우스 누름");
+
+            var forward = mainCamera.transform.TransformDirection(Vector3.forward);
+            forward.y = 0;
+
+            targetDirection = forward;
+        }
     }
 
     private void RotationUpdate()
     {
-        if (isWalk && targetDirection.magnitude > 0.1f)
+        if (isWalk || isAttacking)
         {
             Vector3 lookDirection = targetDirection.normalized;
             freeRotation = Quaternion.LookRotation(lookDirection, transform.up);
