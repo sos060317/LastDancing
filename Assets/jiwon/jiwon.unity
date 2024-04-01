@@ -845,6 +845,7 @@ GameObject:
   - component: {fileID: 3254050704869435608}
   - component: {fileID: 965684656498676915}
   - component: {fileID: 3276842968698898374}
+  - component: {fileID: 3276842968698898373}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -852,6 +853,32 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &3276842968698898373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3276842968698898372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1f504b956f282e459a4f8fa88a96c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fieldOfView:
+    lookRadius: 0
+    noLookRadius: 0
+    angle: 0
+    targetMask:
+      serializedVersion: 2
+      m_Bits: 0
+    obstructionMask:
+      serializedVersion: 2
+      m_Bits: 0
+    canSeePlayer: 0
+    playerRef: {fileID: 0}
+  bulletPrefab: {fileID: 5634121487329346252, guid: 0474517454922b3469b892b7527dcae0,
+    type: 3}
 --- !u!114 &3276842968698898374
 MonoBehaviour:
   m_ObjectHideFlags: 0
