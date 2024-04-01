@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
 
     private Vector2 inputVec;
+    private Vector2 moveVec;
+    private Vector2 velocity;
     private Vector3 targetDirection;
     private Quaternion freeRotation;
 
@@ -41,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
 
         inputVec.x = Input.GetAxisRaw("Horizontal");
         inputVec.y = Input.GetAxisRaw("Vertical");
+
+        moveVec = Vector2.SmoothDamp(moveVec, inputVec, ref velocity, 0.05f);
 
         if (inputVec != Vector2.zero)
         {
@@ -70,6 +74,9 @@ public class PlayerMovement : MonoBehaviour
     private void AnimationUpdate()
     {
         anim.SetBool("isWalk", isWalk);
+        anim.SetBool("isAttacking", isAttacking);
+        anim.SetFloat("InputX", moveVec.x);
+        anim.SetFloat("InputY", moveVec.y);
     }
 
     private void TargetDirectionUpdate()
