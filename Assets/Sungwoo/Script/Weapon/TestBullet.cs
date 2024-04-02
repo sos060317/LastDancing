@@ -11,12 +11,12 @@ public class TestBullet : MonoBehaviour
     private void Start()
     {
         rigid = GetComponent<Rigidbody>();
-
-        Init();
     }
 
-    public void Init()
+    public void Init(float spread)
     {
-        rigid.velocity = transform.forward * moveSpeed;
+        rigid = GetComponent<Rigidbody>();
+
+        rigid.velocity = (transform.forward + (Random.insideUnitSphere * spread)) * moveSpeed;
     }
 }
