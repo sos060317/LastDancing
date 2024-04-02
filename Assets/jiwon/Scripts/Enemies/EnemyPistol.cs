@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class EnemyPistol : EnemyBase
 {
+    protected override void Attack()
+    {
 
+    }
 }
