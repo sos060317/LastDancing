@@ -1,33 +1,43 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(Health))]
-[RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(BoxCollider))]
+[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(Health))]
 public abstract class EnemyBase : MonoBehaviour
 {
-    [SerializeField] private float range;
+    [SerializeField] protected float range;
+    [SerializeField] protected float shootSpeed;
+    [SerializeField] protected float shootTimer;
+    [SerializeField] protected float shootDelay;
+    [SerializeField] protected bool isAttackReady;
 
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform target;
+    [SerializeField] protected GameObject bulletPrefab;
+    [SerializeField] protected Transform shootingPoint;
+    [SerializeField] protected Transform target;
 
-    private Health health;
-    private Rigidbody rigid;
-    private NavMeshAgent agent;
+    protected Health health;
+    protected Animator anim;
+    protected NavMeshAgent agent;
 
-    private void Start()
+    protected virtual void Start()
     {
         health = GetComponent<Health>();
-        rigid = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         health.onDie += DieAction; // 나중에 OnEnable에 옮기기
+
+        shootTimer = shootDelay;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (target == null)
             return;
+
+        shootTimer += Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -42,16 +52,26 @@ public abstract class EnemyBase : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, target.position) <= range)
         {
-
-            agent.speed = 0f;
+            agent.speed = 0;
+            isAttackReady = true;
+            return;
         }
-
-        agent.SetDestination(target.position);
+        else
+        {
+            isAttackReady = false;
+            agent.speed = 3.5f;
+            agent.SetDestination(target.position);
+        }
     }
 
     private void DieAction()
     {
         health.onDie -= DieAction;
         Debug.Log("권총 사망");
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 }

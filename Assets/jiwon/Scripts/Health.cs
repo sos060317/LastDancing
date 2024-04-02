@@ -1,6 +1,9 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// IDamageable 구현부분
+/// </summary>
 public class Health : MonoBehaviour, IDamageable
 {
     // 나중에 SerializeField 삭제
@@ -9,6 +12,9 @@ public class Health : MonoBehaviour, IDamageable
     
     [HideInInspector] public Action onDie;
 
+    /// <summary>
+    /// HP프로퍼티 구현부분
+    /// </summary>
     public float CurrentHealth
     {
         get
@@ -33,6 +39,10 @@ public class Health : MonoBehaviour, IDamageable
         currentHealth = maxhealth;
     }
 
+    /// <summary>
+    /// 데미지 받기 구현부분
+    /// </summary>
+    /// <param name="amount"></param>
     public void TakeDamage(float amount)
     {
         CurrentHealth -= amount;
