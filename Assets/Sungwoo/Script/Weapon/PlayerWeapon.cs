@@ -11,6 +11,7 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private Transform shotPos;
     [SerializeField] private Rig aimingRigLayer;
     [SerializeField] private CinemachineVirtualCamera playerCamera;
+    [SerializeField] private ParticleSystem shootEffect;
 
     private float fireTimer = 0f;
     private float bulletSpread = 0.05f;
@@ -78,5 +79,7 @@ public class PlayerWeapon : MonoBehaviour
         Instantiate(bulletPrefab, shotPos.position, transform.rotation).Init(bulletSpread);
 
         recoil.GenerateRecoil();
+
+        shootEffect.Emit(30);
     }
 }
