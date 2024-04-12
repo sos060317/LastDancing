@@ -5702,7 +5702,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    maxLights: 5
+    maxLights: 2
   TrailModule:
     enabled: 0
     mode: 0
@@ -6879,7 +6879,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 1454809356}
   cameraShake: {fileID: 0}
-  verticalRecoil: 1
+  recoilPattern:
+  - {x: 1, y: 1}
+  - {x: 0.7, y: 1}
+  - {x: 0.5, y: 1}
+  - {x: 0.2, y: 1}
+  - {x: 0.1, y: 1}
+  - {x: -0.2, y: 1}
+  - {x: -0.5, y: 1}
+  - {x: -0.7, y: 1}
+  - {x: -1, y: 1}
+  - {x: -0.7, y: 1}
+  - {x: -0.5, y: 1}
+  - {x: -0.2, y: 1}
+  - {x: -0.1, y: 1}
+  - {x: 0.2, y: 1}
+  - {x: 0.5, y: 1}
   duration: 0.1
 --- !u!114 &1790217154
 MonoBehaviour:
