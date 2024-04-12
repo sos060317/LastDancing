@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
+using Cinemachine;
 
 public class PlayerWeapon : MonoBehaviour
 {
@@ -9,11 +10,21 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private TestBullet bulletPrefab;
     [SerializeField] private Transform shotPos;
     [SerializeField] private Rig aimingRigLayer;
+    [SerializeField] private CinemachineVirtualCamera playerCamera;
 
     private float fireTimer = 0f;
     private float bulletSpread = 0.05f;
 
     private bool isFiring;
+
+    private WeaponRecoil recoil;
+
+    private void Start()
+    {
+        // 변수 초기화
+        recoil = GetComponent<WeaponRecoil>();
+        recoil.playerCamera = playerCamera;
+    }
 
     private void Update()
     {
@@ -65,5 +76,7 @@ public class PlayerWeapon : MonoBehaviour
     private void ShotBullet()
     {
         Instantiate(bulletPrefab, shotPos.position, transform.rotation).Init(bulletSpread);
+
+        recoil.GenerateRecoil();
     }
 }
