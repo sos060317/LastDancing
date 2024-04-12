@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void TargetDirectionUpdate()
     {
-        // 공격중이 아니면 이동방향으로 회전
+        // 마우스를 누르고 있지 않으면 이동방향으로 회전
         if (!isAttacking)
         {
             turnSpeedMultiplier = 1f;
@@ -92,10 +92,9 @@ public class PlayerMovement : MonoBehaviour
 
             targetDirection = inputVec.x * right + inputVec.y * forward;
         }
+        // 마우스를 누르고 있으면 카메라가 보는 방향으로 회전
         else
         {
-            Debug.Log("마우스 누름");
-
             var forward = mainCamera.transform.TransformDirection(Vector3.forward);
             forward.y = 0;
 
