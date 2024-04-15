@@ -15,11 +15,11 @@ public class EnemyPistol : EnemyBase
         if (!isAttackReady || shootTimer <= shootDelay)
             return;
 
-        anim.SetTrigger("shooting");
-
         Vector3 shootDirection = (target.position - transform.position).normalized;
         GameObject bullet = Instantiate(bulletPrefab, shootingPoint.position, Quaternion.LookRotation(shootDirection) * Quaternion.Euler(90, 0, 0));
         bullet.GetComponent<Rigidbody>().velocity = shootDirection * shootSpeed;
+
+        anim.SetTrigger("shooting");
 
         shootTimer = 0;
     }

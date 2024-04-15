@@ -22,6 +22,8 @@ public abstract class EnemyBase : MonoBehaviour
     protected Animator anim;
     protected NavMeshAgent agent;
 
+    protected readonly int ShootingHash = Animator.StringToHash("shooting");
+
     protected virtual void Start()
     {
         health = GetComponent<Health>();
