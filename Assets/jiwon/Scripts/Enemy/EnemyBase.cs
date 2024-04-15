@@ -10,13 +10,13 @@ public abstract class EnemyBase : MonoBehaviour
 {
     [Header("Enemy Base")]
     [SerializeField] protected float range;
-    [SerializeField] protected float shootSpeed;
-    [SerializeField] protected float shootTimer;
-    [SerializeField] protected float shootDelay;
+    [SerializeField] protected float fireSpeed;
+    [SerializeField] protected float fireTimer;
+    [SerializeField] protected float fireDelay;
     [SerializeField] protected bool isAttackReady;
 
     [SerializeField] protected GameObject bulletPrefab;
-    [SerializeField] protected Transform shootingPoint;
+    [SerializeField] protected Transform firePoint;
     [SerializeField] protected Transform target;
 
     protected Health health;
@@ -32,7 +32,7 @@ public abstract class EnemyBase : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         health.onDie += DieAction; // 나중에 OnEnable에 옮기기
 
-        shootTimer = shootDelay;
+        fireTimer = fireDelay;
     }
 
     protected virtual void FixedUpdate()
@@ -40,7 +40,7 @@ public abstract class EnemyBase : MonoBehaviour
         if (target == null)
             return;
 
-        shootTimer += Time.deltaTime;
+        fireTimer += Time.deltaTime;
 
         Move();
     }

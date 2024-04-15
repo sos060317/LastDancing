@@ -16,15 +16,15 @@ public class EnemyPistol : EnemyBase
 
     protected override void Attack()
     {
-        if (!isAttackReady || shootTimer <= shootDelay)
+        if (!isAttackReady || fireTimer <= fireDelay)
             return;
 
-        Vector3 shootDirection = (target.position - transform.position).normalized;
-        GameObject bullet = Instantiate(bulletPrefab, shootingPoint.position, Quaternion.LookRotation(shootDirection) * Quaternion.Euler(90, 0, 0));
-        bullet.GetComponent<Rigidbody>().velocity = shootDirection * shootSpeed;
+        Vector3 fireDirection = (target.position - transform.position).normalized;
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.LookRotation(fireDirection) * Quaternion.Euler(90, 0, 0));
+        bullet.GetComponent<Rigidbody>().velocity = fireDirection * fireSpeed;
 
         anim.SetTrigger(ShootingHash);
 
-        shootTimer = 0;
+        fireTimer = 0;
     }
 }

@@ -4,57 +4,38 @@ using UnityEngine;
 
 public class EnemyShotgun : EnemyBase
 {
-    [Space(10)]
-    public float speed;
+    public int pelletCount;     // 발사할 총알 수
+    public float spreadAngle; // 산탄 퍼짐 각도
 
-    private Transform myGun;
-
-    private Vector3 attackPosition;
-
-    protected override void Start()
+    private void Update()
     {
-        base.Start();
-
-        myGun = transform.GetChild(0);
-        attackPosition = new Vector3(0, 10, 0);
+        Attack();
     }
 
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-
-        Attack();
     }
 
     protected override void Attack()
     {
-        if (!isAttackReady || shootTimer <= shootDelay)
+        if (!isAttackReady || fireTimer <= fireDelay)
             return;
 
-        shootTimer = 0;
-
-        StartCoroutine(MoveToAttack());
-
-        // 총 쏘는 로직
-        Vector3 shootDirection = (target.position - myGun.position).normalized;
-        GameObject bullet = Instantiate(bulletPrefab, shootingPoint.position, Quaternion.LookRotation(shootDirection) * Quaternion.Euler(90, 0, 0));
-        bullet.GetComponent<Rigidbody>().velocity = shootDirection * shootSpeed;
-
-        anim.SetTrigger(ShootingHash);
-    }
-
-    IEnumerator MoveToAttack()
-    {
-        // 플레이어 머리 위로 이동하는 로직
-        anim.enabled = false;
-
-        while(myGun.position != target.position + attackPosition)
+        // 산탄 총알 발사
+        for (int i = 0; i < pelletCount; i++)
         {
-            myGun.position = Vector3.MoveTowards(myGun.position, target.position + attackPosition, speed * Time.deltaTime);
-            yield return null;
+            // 총알이 나갈 각도 계산
+            float randomSpread1 = Random.Range(0, -spreadAngle);
+            float randomSpread2 = Random.Range(0, -spreadAngle);
+            Quaternion bulletDirection = Quaternion.Euler(90 + randomSpread1, randomSpread2, 0);
+
+            // 총알 생성
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, bulletDirection);
+
+            bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * fireSpeed;
         }
 
-        myGun.LookAt(target.position);
+        fireTimer = 0;
     }
-
 }
