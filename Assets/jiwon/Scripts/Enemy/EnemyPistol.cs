@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class EnemyPistol : EnemyBase
 {
-    protected override void Update()
+    private void Update()
     {
-        base.Update();
         Attack();
+    }
+
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
     }
 
     protected override void Attack()
@@ -19,7 +23,7 @@ public class EnemyPistol : EnemyBase
         GameObject bullet = Instantiate(bulletPrefab, shootingPoint.position, Quaternion.LookRotation(shootDirection) * Quaternion.Euler(90, 0, 0));
         bullet.GetComponent<Rigidbody>().velocity = shootDirection * shootSpeed;
 
-        anim.SetTrigger("shooting");
+        anim.SetTrigger(ShootingHash);
 
         shootTimer = 0;
     }

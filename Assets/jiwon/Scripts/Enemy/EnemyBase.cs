@@ -8,6 +8,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Health))]
 public abstract class EnemyBase : MonoBehaviour
 {
+    [Header("Enemy Base")]
     [SerializeField] protected float range;
     [SerializeField] protected float shootSpeed;
     [SerializeField] protected float shootTimer;
@@ -34,17 +35,13 @@ public abstract class EnemyBase : MonoBehaviour
         shootTimer = shootDelay;
     }
 
-    protected virtual void Update()
+    protected virtual void FixedUpdate()
     {
         if (target == null)
             return;
 
         shootTimer += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            health.TakeDamage(27);
-        }
         Move();
     }
 
@@ -60,8 +57,8 @@ public abstract class EnemyBase : MonoBehaviour
         }
         else
         {
-            isAttackReady = false;
             agent.speed = 3.5f;
+            isAttackReady = false;
             agent.SetDestination(target.position);
         }
     }

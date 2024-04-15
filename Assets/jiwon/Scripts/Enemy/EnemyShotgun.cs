@@ -1,25 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class EnemyShotgun : EnemyBase
 {
+    [Space(10)]
+    public float speed;
+
     private Transform myGun;
-    private Vector3 attackPosition = new Vector3(0, 15, 0);
-    private Quaternion attackRotate = Quaternion.Euler(90, 0, 0);
 
-    WaitForSeconds wait = new WaitForSeconds(0.1f);
+    private Vector3 attackPosition;
 
-    private void Awake()
+    protected override void Start()
     {
+        base.Start();
+
         myGun = transform.GetChild(0);
-        Debug.Log(myGun.name);
+        attackPosition = new Vector3(0, 10, 0);
     }
 
-    protected override void Update()
+    protected override void FixedUpdate()
     {
-        base.Update();
+        base.FixedUpdate();
+
         Attack();
     }
 
@@ -28,29 +31,30 @@ public class EnemyShotgun : EnemyBase
         if (!isAttackReady || shootTimer <= shootDelay)
             return;
 
-        isAttackReady = false;
-        StartCoroutine(MoveToAttackPoint());
-    }
+        shootTimer = 0;
 
-    IEnumerator MoveToAttackPoint()
-    {
-        yield return wait;
+        StartCoroutine(MoveToAttack());
 
-        while (myGun.transform.position != target.position + attackPosition || myGun.transform.rotation != attackRotate)
-        {
-            myGun.transform.position = Vector3.MoveTowards(myGun.transform.position, target.position + attackPosition, 0.5f);
-            myGun.transform.rotation = Quaternion.RotateTowards(myGun.transform.rotation, attackRotate, 0.5f);
-
-            yield return wait;
-        }
-
-        Vector3 shootDirection = (target.position - transform.position).normalized;
-        GameObject bullet = Instantiate(bulletPrefab, shootingPoint.position, Quaternion.LookRotation(shootDirection));
+        // 총 쏘는 로직
+        Vector3 shootDirection = (target.position - myGun.position).normalized;
+        GameObject bullet = Instantiate(bulletPrefab, shootingPoint.position, Quaternion.LookRotation(shootDirection) * Quaternion.Euler(90, 0, 0));
         bullet.GetComponent<Rigidbody>().velocity = shootDirection * shootSpeed;
 
         anim.SetTrigger(ShootingHash);
-
-        shootTimer = 0;
-        isAttackReady = true;
     }
+
+    IEnumerator MoveToAttack()
+    {
+        // 플레이어 머리 위로 이동하는 로직
+        anim.enabled = false;
+
+        while(myGun.position != target.position + attackPosition)
+        {
+            myGun.position = Vector3.MoveTowards(myGun.position, target.position + attackPosition, speed * Time.deltaTime);
+            yield return null;
+        }
+
+        myGun.LookAt(target.position);
+    }
+
 }
