@@ -30,7 +30,7 @@ public abstract class EnemyBase : MonoBehaviour
         health = GetComponent<Health>();
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        health.onDie += DieAction; // ³ªÁß¿¡ OnEnable¿¡ ¿Å±â±â
+        health.onDie += DieAction; // ï¿½ï¿½ï¿½ß¿ï¿½ OnEnableï¿½ï¿½ ï¿½Å±ï¿½ï¿?
 
         fireTimer = fireDelay;
     }
@@ -41,7 +41,6 @@ public abstract class EnemyBase : MonoBehaviour
             return;
 
         fireTimer += Time.deltaTime;
-
         Move();
     }
 
@@ -66,7 +65,7 @@ public abstract class EnemyBase : MonoBehaviour
     private void DieAction()
     {
         health.onDie -= DieAction;
-        Debug.Log("±ÇÃÑ »ç¸Á");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿?");
     }
 
     private void OnDrawGizmos()
