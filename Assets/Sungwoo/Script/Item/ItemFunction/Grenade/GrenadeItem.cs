@@ -28,6 +28,9 @@ public class GrenadeItem : ItemFunctionBase
 
     private IEnumerator AttackRoutine()
     {
-        yield return null;
+        while (true)
+        {
+
+        }
     }
 }
