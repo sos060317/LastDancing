@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MeshDestroy : MonoBehaviour
@@ -12,6 +13,13 @@ public class MeshDestroy : MonoBehaviour
 
     public int CutCascades = 1;
     public float ExplodeForce = 0;
+    public GameObject explosionEffect;
+
+    private void OnDrawGizmos()
+    {
+        //Gizmos.color = Color.white;
+        //Gizmos.DrawSphere(Vector3.zero, 1f);
+    }
 
     private void Update()
     {
@@ -54,6 +62,12 @@ public class MeshDestroy : MonoBehaviour
                                         UnityEngine.Random.Range(bounds.min.y, bounds.max.y),
                                         UnityEngine.Random.Range(bounds.min.z, bounds.max.z)));
 
+                Debug.Log(plane.normal);
+                Instantiate(explosionEffect, plane.normal, Quaternion.identity);
+                Instantiate(explosionEffect, new Vector3(UnityEngine.Random.Range(bounds.min.x, bounds.max.x),
+                                        UnityEngine.Random.Range(bounds.min.y, bounds.max.y),
+                                        UnityEngine.Random.Range(bounds.min.z, bounds.max.z)), Quaternion.identity);
+
                 subParts.Add(GenerateMesh(parts[i], plane, true));
                 subParts.Add(GenerateMesh(parts[i], plane, false));
             }
@@ -85,11 +99,16 @@ public class MeshDestroy : MonoBehaviour
             {
                 var sideA = plane.GetSide(original.Vertices[triangles[j]]) == left;
                 var sideB = plane.GetSide(original.Vertices[triangles[j + 1]]) == left;
-                var sideC = plane.GetSide(original.Vertices[triangles[j + 2]]) == left;
+                var sideC = plane.GetSide(original.Vertices[triangles[j + 2]]) == left;           
+
+                Debug.Log(original.Vertices[triangles[j]]);
+                Debug.Log(original.Vertices[triangles[j + 1]]);
+                Debug.Log(original.Vertices[triangles[j + 2]]);
 
                 var sideCount = (sideA ? 1 : 0) +
                                 (sideB ? 1 : 0) +
                                 (sideC ? 1 : 0);
+                Debug.Log(sideCount);
                 if (sideCount == 0)
                 {
                     continue;
