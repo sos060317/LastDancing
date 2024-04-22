@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
 
     public Camera mainCamera;
 
+    public Transform curPlayer;
+
     private void Awake()
     {
         if (instance == null)

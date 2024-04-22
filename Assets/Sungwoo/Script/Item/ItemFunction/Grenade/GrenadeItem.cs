@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class GrenadeItem : ItemFunctionBase
 {
-    [SerializeField] private GameObject grenadePrefab;
+    [SerializeField] private Grenade grenadePrefab;
 
     private int curLevel;
 
     private bool isAttacking;
+
+    private Transform player;
+
+    private void Start()
+    {
+        StartCoroutine(AttackRoutine());
+    }
 
     public override void Init(ItemDetails details)
     {
@@ -28,9 +35,15 @@ public class GrenadeItem : ItemFunctionBase
 
     private IEnumerator AttackRoutine()
     {
+        player = GameManager.Instance.curPlayer;
+
         while (true)
         {
+            var grenade = Instantiate(grenadePrefab, player.position + Vector3.up * 2, Quaternion.identity);
 
+            grenade.Init(3);
+
+            yield return YieldInstructionCache.WaitForSeconds(6f);
         }
     }
 }
