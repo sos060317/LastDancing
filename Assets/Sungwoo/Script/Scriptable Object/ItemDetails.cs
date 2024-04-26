@@ -5,8 +5,15 @@ public class ItemDetails : ScriptableObject
 {
     #region 아이템 데이터
 
+    public Sprite itemImage;
+    public string itemName;
+
+    #endregion
+
+    #region 아이템 스탯
+
     [Space(10)]
-    [Header("아이템 데이터")]
+    [Header("아이템 스탯")]
     public ItemData[] itemData;
 
     #endregion
@@ -24,5 +31,6 @@ public class ItemDetails : ScriptableObject
     {
         public int itemCount;
         public float itemDamage;
+        [TextArea] public string itemDesc;
     }
 }

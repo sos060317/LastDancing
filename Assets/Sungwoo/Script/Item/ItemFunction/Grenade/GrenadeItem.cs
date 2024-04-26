@@ -6,16 +6,11 @@ public class GrenadeItem : ItemFunctionBase
 {
     [SerializeField] private Grenade grenadePrefab;
 
-    private int curLevel;
+    private int curLevel = -1;
 
     private bool isAttacking;
 
     private Transform player;
-
-    private void Start()
-    {
-        StartCoroutine(AttackRoutine());
-    }
 
     public override void Init(ItemDetails details)
     {
@@ -39,9 +34,12 @@ public class GrenadeItem : ItemFunctionBase
 
         while (true)
         {
-            var grenade = Instantiate(grenadePrefab, player.position + Vector3.up * 2, Quaternion.identity);
+            for (int i = 0; i < itemDetails.itemData[curLevel].itemCount; i++)
+            {
+                var grenade = Instantiate(grenadePrefab, player.position + Vector3.up * 2, Quaternion.identity);
 
-            grenade.Init(3);
+                grenade.Init(3);
+            }
 
             yield return YieldInstructionCache.WaitForSeconds(6f);
         }
