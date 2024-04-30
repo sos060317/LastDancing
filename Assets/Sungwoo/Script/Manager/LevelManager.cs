@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] private Transform itemHandler;
+
+    [SerializeField] private ItemCard itemCardPrefab;
+    [SerializeField] private ItemDetails[] items;
+
     #region ΩÃ±€≈Ê
 
     private static LevelManager instance = null;
@@ -27,6 +32,20 @@ public class LevelManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        InitItemCard();
+    }
+
+    private void InitItemCard()
+    {
+        foreach (var item in items)
+        {
+            var itemCard = Instantiate(itemCardPrefab, itemHandler);
+            itemCard.InitItemCard(item);
         }
     }
 }

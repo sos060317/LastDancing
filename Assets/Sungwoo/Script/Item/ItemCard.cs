@@ -12,14 +12,7 @@ public class ItemCard : MonoBehaviour
 
     private ItemFunctionBase item;
 
-    public ItemDetails test;
-
     private ItemDetails itemDetails;
-
-    private void Start()
-    {
-        InitItemCard(test);
-    }
 
     public void InitItemCard(ItemDetails details)
     {
