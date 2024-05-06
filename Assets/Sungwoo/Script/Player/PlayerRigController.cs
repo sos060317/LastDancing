@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
@@ -9,8 +7,39 @@ public class PlayerRigController : MonoBehaviour
     [SerializeField] private Rig aimingRigLayer;
     [SerializeField] private Rig bodyRigLayer;
 
+    private bool isStop;
+
+    private void OnEnable()
+    {
+        // Ω√∞£ ∏ÿ√„ ¿Ã∫•∆Æ µÓ∑œ
+        TimeManager.Instance.TimeStopAction += TimeStop;
+        TimeManager.Instance.TimePlayAction += TimePlay;
+    }
+
+    private void OnDisable()
+    {
+        // Ω√∞£ ∏ÿ√„ ¿Ã∫•∆Æ µÓ∑œ «ÿ¡¶
+        TimeManager.Instance.TimeStopAction -= TimeStop;
+        TimeManager.Instance.TimePlayAction -= TimePlay;
+    }
+
+    private void TimeStop()
+    {
+        isStop = true;
+    }
+
+    private void TimePlay()
+    {
+        isStop = false;
+    }
+
     private void Update()
     {
+        if (isStop)
+        {
+            return;
+        }
+
         AimingUpdate();
     }
 

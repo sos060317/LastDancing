@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
 
     public Camera mainCamera;
 
+    public Transform curPlayer;
+
     private void Awake()
     {
         if (instance == null)
@@ -25,6 +27,16 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        // Test
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            LevelManager.Instance.ShowItemCard();
+            TimeManager.Instance.TimeStop();
         }
     }
 }
