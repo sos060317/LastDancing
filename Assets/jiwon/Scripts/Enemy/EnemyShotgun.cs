@@ -22,7 +22,7 @@ public class EnemyShotgun : EnemyBase
         if (!isAttackReady || fireTimer <= fireDelay)
             return;
 
-        SpreadShot(10, 30);
+        AllDirectionsShot(10, 10);
         anim.SetTrigger(ShootingHash);
 
         fireTimer = 0;

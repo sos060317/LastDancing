@@ -31,7 +31,7 @@ public abstract class EnemyBase : MonoBehaviour
         health = GetComponent<Health>();
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        health.onDie += DieAction; // ï¿½ï¿½ï¿½ß¿ï¿½ OnEnableï¿½ï¿½ ï¿½Å±ï¿½ï¿?
+        health.onDie += DieAction; // ¿ÀºêÁ§Æ® Ç®¸µ Á¦ÀÛ ÈÄ ÀÎ¿¡ÀÌºí·Î ¿Å±â±â
 
         fireTimer = fireDelay;
     }
@@ -92,7 +92,7 @@ public abstract class EnemyBase : MonoBehaviour
     /// </summary>
     /// <param name="circleCount"></param>
     /// <param name="bulletCount"></param>
-    protected void CircleCircleShapeShot(int circleCount, int bulletCount)
+    protected void CircleCircleShapeShot(int bulletCount, int circleCount)
     {
         float radius = 2f;
         for (int i = 0; i < 360; i += 360 / circleCount)
@@ -131,7 +131,12 @@ public abstract class EnemyBase : MonoBehaviour
         }
     }
 
-    protected void CircleDelayCircleShapeShot(int circleCount, int bulletCount)
+    /// <summary>
+    /// »ç¹æ ¿øÇü ¿ø ¸ð¾ç Èð»Ñ¸®±â Åº¸·
+    /// </summary>
+    /// <param name="circleCount"></param>
+    /// <param name="bulletCount"></param>
+    protected void CircleDelayCircleShapeShot(int bulletCount, int circleCount)
     {
         StartCoroutine(shotCoroutine());
 
@@ -215,6 +220,24 @@ public abstract class EnemyBase : MonoBehaviour
 
             // À§Ä¡¿Í ¹æÇâÀ¸·Î Àû¿ëÇÏ¿© »ý¼º
             Instantiate(bulletPrefab, firePoint.position, rot);
+        }
+    }
+    #endregion
+
+    #region º¸½º Åº¸· ÆÐÅÏ
+    /// <summary>
+    /// Àü ¹æÇâ Åº¸·
+    /// </summary>
+    /// <param name="bulletCount"></param>
+    /// <param name="rotationCount"></param>
+    protected void AllDirectionsShot(int bulletCount, int rotationCount)
+    {
+        for(int i = 0; i <= 180; i += 180 / rotationCount)
+        {
+            for (int j = 0; j <= 180; j += 180 / bulletCount)
+            {
+                Instantiate(bulletPrefab, firePoint.position, Quaternion.Euler(0, i, 90 - j));
+            }
         }
     }
     #endregion
