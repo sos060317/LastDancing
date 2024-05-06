@@ -43,5 +43,8 @@ public class ItemCard : MonoBehaviour
 
         // 설명 초기화
         itemDesc.text = itemDetails.itemData[curLevel].itemDesc;
+
+        LevelManager.Instance.HideItemCard();
+        TimeManager.Instance.TimePlay();
     }
 }

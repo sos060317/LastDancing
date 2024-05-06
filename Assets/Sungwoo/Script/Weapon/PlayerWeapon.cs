@@ -17,6 +17,7 @@ public class PlayerWeapon : MonoBehaviour
     private float bulletSpread = 0.05f;
 
     private bool isFiring;
+    private bool isStop;
 
     private WeaponRecoil recoil;
 
@@ -27,8 +28,37 @@ public class PlayerWeapon : MonoBehaviour
         recoil.playerCamera = playerCamera;
     }
 
+    private void OnEnable()
+    {
+        // Ω√∞£ ∏ÿ√„ ¿Ã∫•∆Æ µÓ∑œ
+        TimeManager.Instance.TimeStopAction += TimeStop;
+        TimeManager.Instance.TimePlayAction += TimePlay;
+    }
+
+    private void OnDisable()
+    {
+        // Ω√∞£ ∏ÿ√„ ¿Ã∫•∆Æ µÓ∑œ «ÿ¡¶
+        TimeManager.Instance.TimeStopAction -= TimeStop;
+        TimeManager.Instance.TimePlayAction -= TimePlay;
+    }
+
+    private void TimeStop()
+    {
+        isStop = true;
+    }
+
+    private void TimePlay()
+    {
+        isStop = false;
+    }
+
     private void Update()
     {
+        if (isStop)
+        {
+            return;
+        }
+
         InputUpdate();
         FireUpdate();
     }

@@ -29,4 +29,14 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void Update()
+    {
+        // Test
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            LevelManager.Instance.ShowItemCard();
+            TimeManager.Instance.TimeStop();
+        }
+    }
 }

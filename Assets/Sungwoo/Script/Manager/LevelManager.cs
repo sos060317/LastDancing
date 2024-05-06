@@ -37,15 +37,25 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        InitItemCard();
+        CreateItemCard();
     }
 
-    private void InitItemCard()
+    private void CreateItemCard()
     {
         foreach (var item in items)
         {
             var itemCard = Instantiate(itemCardPrefab, itemHandler);
             itemCard.InitItemCard(item);
         }
+    }
+
+    public void ShowItemCard()
+    {
+        itemHandler.gameObject.SetActive(true);
+    }
+
+    public void HideItemCard()
+    {
+        itemHandler.gameObject.SetActive(false);
     }
 }

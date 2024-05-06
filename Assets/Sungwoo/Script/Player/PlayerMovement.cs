@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isWalk;
     private bool isAttacking;
+    private bool isStop;
 
     private Animator anim;
 
@@ -23,10 +24,57 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
+
+        // 커서 숨기기
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void OnEnable()
+    {
+        // 시간 멈춤 이벤트 등록
+        TimeManager.Instance.TimeStopAction += TimeStop;
+        TimeManager.Instance.TimePlayAction += TimePlay;
+    }
+
+    private void OnDisable()
+    {
+        // 시간 멈춤 이벤트 등록 해제
+        TimeManager.Instance.TimeStopAction -= TimeStop;
+        TimeManager.Instance.TimePlayAction -= TimePlay;
+    }
+
+    private void TimeStop()
+    {
+        // 커서 보이기
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        // 애니메이션 멈추기
+        anim.StartPlayback();
+
+        isStop = true;
+    }
+
+    private void TimePlay()
+    {
+        // 커서 숨기기
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
+        // 애니메이션 재생
+        anim.StopPlayback();
+
+        isStop = false;
     }
 
     private void FixedUpdate()
     {
+        if (isStop)
+        {
+            return;
+        }
+
         InputUpdate();
         AnimationUpdate();
         TargetDirectionUpdate();
