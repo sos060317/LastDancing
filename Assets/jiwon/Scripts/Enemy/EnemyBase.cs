@@ -226,11 +226,11 @@ public abstract class EnemyBase : MonoBehaviour
 
     #region 보스 탄막 패턴
     /// <summary>
-    /// 전 방향 탄막
+    /// 전 방향 회전 탄막
     /// </summary>
     /// <param name="bulletCount"></param>
     /// <param name="rotationCount"></param>
-    protected void AllDirectionsShot(int bulletCount, int rotationCount)
+    protected void AllDirectionRotationsShot(int bulletCount, int rotationCount)
     {
         for(int i = 0; i <= 180; i += 180 / rotationCount)
         {
