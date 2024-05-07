@@ -18,7 +18,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     [SerializeField] protected GameObject bulletPrefab;
     [SerializeField] protected Transform firePoint;
-    [SerializeField] protected Transform target;
+    [SerializeField] public Transform target;
 
     protected Health health;
     protected Animator anim;
@@ -79,9 +79,9 @@ public abstract class EnemyBase : MonoBehaviour
     /// 사방으로 탄막을 원 모양으로 한번에 발사
     /// </summary>
     /// <param name="bulletCount"></param>
-    protected void CircleShot(int bulletCount)
-    {
-        for (int i = 0; i < 360; i += 360 / bulletCount)
+        protected void CircleShot(int bulletCount)
+        {
+            for (int i = 0; i < 360; i += 360 / bulletCount)
         {
             Instantiate(bulletPrefab, firePoint.position, Quaternion.Euler(0, i, 90));
         }
