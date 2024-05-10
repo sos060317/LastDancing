@@ -19,9 +19,7 @@ public class EnemyPistol : EnemyBase
         if (!isAttackReady || fireTimer <= fireDelay)
             return;
 
-        Vector3 fireDirection = (target.position - transform.position).normalized;
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.LookRotation(fireDirection) * Quaternion.Euler(90, 0, 0));
-        bullet.GetComponent<Rigidbody>().velocity = fireDirection * fireSpeed;
+        TargetingSingleShot();
 
         anim.SetTrigger(ShootingHash);
 
