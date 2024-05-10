@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -82,10 +83,10 @@ public class LevelManager : MonoBehaviour
 
     public void HideItemCard()
     {
-        
+        StartCoroutine(HideItemRoutine());
     }
 
-    private void HideItemRoutine()
+    private IEnumerator HideItemRoutine()
     {
         // 아이템 숨기기
         for (int i = 0; i < 3; i++)
@@ -93,6 +94,8 @@ public class LevelManager : MonoBehaviour
             selectItemList[i].rect.DOAnchorPos(itemReadyPos[i], 1f).SetEase(Ease.InBack).SetDelay(0.3f * i)
                                   .OnComplete(() => selectItemList[i].gameObject.SetActive(false));
         }
+
+        yield return YieldInstructionCache.WaitForSeconds(1.6f);
 
         itemHandler.gameObject.SetActive(false);
     }
