@@ -172,6 +172,8 @@ MonoBehaviour:
     type: 3}
   items:
   - {fileID: 11400000, guid: effb18fc635cb374199b65815fc1a3cb, type: 2}
+  - {fileID: 11400000, guid: effb18fc635cb374199b65815fc1a3cb, type: 2}
+  - {fileID: 11400000, guid: effb18fc635cb374199b65815fc1a3cb, type: 2}
 --- !u!1 &234372634
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,7 +594,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &548753435
 RectTransform:
   m_ObjectHideFlags: 0

@@ -10,6 +10,10 @@ public class ItemCard : MonoBehaviour
 
     [HideInInspector] public int curLevel;
 
+    [HideInInspector] public bool isMaxLevel;
+
+    [HideInInspector] public RectTransform rect;
+
     private ItemFunctionBase item;
 
     private ItemDetails itemDetails;
@@ -19,6 +23,7 @@ public class ItemCard : MonoBehaviour
         // 변수 초기화
         itemDetails = details;
         curLevel = 0;
+        rect = GetComponent<RectTransform>();
 
         // 텍스트, 아이콘, 설명 셋팅
         itemName.text = itemDetails.itemName;
@@ -33,6 +38,12 @@ public class ItemCard : MonoBehaviour
         {
             item = Instantiate(itemDetails.itemScript);
             item.Init(itemDetails);
+        }
+
+        // 만렙인지 체크
+        if (curLevel >= itemDetails.itemData.Length - 1)
+        {
+            isMaxLevel = true;
         }
 
         // 아이템 업그레이드
