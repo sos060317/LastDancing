@@ -591,13 +591,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 7
-  shootSpeed: 20
-  shootTimer: 0
-  shootDelay: 2
+  fireSpeed: 3
+  fireTimer: 5
+  fireDelay: 0
   isAttackReady: 0
   bulletPrefab: {fileID: 237179926793995451, guid: 71ea937c8b0cda54ba2df223434c63c9,
     type: 3}
-  shootingPoint: {fileID: 9170653018862210482}
+  firePoint: {fileID: 9170653018862210482}
   target: {fileID: 0}
 --- !u!1 &9170653019786498590
 GameObject:

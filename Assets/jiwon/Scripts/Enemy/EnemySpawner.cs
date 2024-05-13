@@ -8,7 +8,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float spawnTimer; //소환 시간
     [SerializeField] private float spawnDelay; //소환 시간
     [SerializeField] private float spawnCount; //소환 카운트
-    [SerializeField] private GameObject enemyPrefab; //적 프리팹
+    [SerializeField] private EnemyBase enemyPrefab; //적 프리팹
 
     [SerializeField] private Transform target;
 
@@ -35,9 +35,10 @@ public class EnemySpawner : MonoBehaviour
         {
             Vector3 randPos = Random.insideUnitSphere * spawnRange; //360도 구체안에서 랜덤좌표를 지정
 
-            randPos.y = 1;
+            randPos.y = 1;  
 
-            Instantiate(enemyPrefab, randPos, Quaternion.identity);
+            var enemy = Instantiate(enemyPrefab, randPos, Quaternion.identity);
+            enemy.target = GameManager.Instance.curPlayer;
         }
     }
 
