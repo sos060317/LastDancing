@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5920269551994225718}
   - component: {fileID: 5931169858784357370}
   - component: {fileID: 5939266160975077106}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Wep_Pistol_Heavy_Mag_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 5924459508237371082}
   - component: {fileID: 5931079697609879328}
   - component: {fileID: 5939123887375999712}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 5920182029421123474}
   - component: {fileID: 5930772805707079434}
   - component: {fileID: 5939398144725028616}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Wep_Pistol_Heavy_Trigger_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 5920543871823457326}
   - component: {fileID: 5930545912890063160}
   - component: {fileID: 5938553413846242748}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Wep_Pistol_Heavy_Slide_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,7 +350,7 @@ GameObject:
   - component: {fileID: 5920261436824977938}
   - component: {fileID: 5930948207356463938}
   - component: {fileID: 5938846257440321958}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Wep_Pistol_Heavy_Hammer_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -432,7 +432,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9170653018862210482}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shooting Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,7 +469,7 @@ GameObject:
   - component: {fileID: 9170653019722947657}
   - component: {fileID: 9170653019722947656}
   - component: {fileID: 9170653019722947671}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -597,6 +597,8 @@ MonoBehaviour:
   isAttackReady: 0
   bulletPrefab: {fileID: 237179926793995451, guid: 71ea937c8b0cda54ba2df223434c63c9,
     type: 3}
+  dieEffect: {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5,
+    type: 3}
   firePoint: {fileID: 9170653018862210482}
   target: {fileID: 0}
 --- !u!1 &9170653019786498590
@@ -608,7 +610,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9170653019786498591}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Parts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
