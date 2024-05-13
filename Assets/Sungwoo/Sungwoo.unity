@@ -6858,7 +6858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRange: 50
-  spawnTimer: 10
+  spawnTimer: 7
   spawnDelay: 0
   spawnCount: 0
   enemyPrefab: {fileID: 9170653019722947671, guid: 260d89006de3a414f85ae31cac76ab91,

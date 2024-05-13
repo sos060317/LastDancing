@@ -597,6 +597,8 @@ MonoBehaviour:
   isAttackReady: 0
   bulletPrefab: {fileID: 237179926793995451, guid: 71ea937c8b0cda54ba2df223434c63c9,
     type: 3}
+  dieEffect: {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5,
+    type: 3}
   firePoint: {fileID: 9170653018862210482}
   target: {fileID: 0}
 --- !u!1 &9170653019786498590

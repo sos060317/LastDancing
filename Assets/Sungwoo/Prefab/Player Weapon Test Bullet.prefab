@@ -238,3 +238,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 60
   damage: 20
+  hitEfffect: {fileID: 725748389856807714, guid: 072bfe309abc5aa459e99092a4ab7a5a,
+    type: 3}

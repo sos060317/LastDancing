@@ -17,6 +17,7 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected bool isAttackReady;
 
     [SerializeField] protected GameObject bulletPrefab;
+    [SerializeField] protected GameObject dieEffect;
     [SerializeField] protected Transform firePoint;
     [SerializeField] public Transform target;
 
@@ -66,6 +67,8 @@ public abstract class EnemyBase : MonoBehaviour
     private void DieAction()
     {
         health.onDie -= DieAction;
+
+        Instantiate(dieEffect, transform.position, Quaternion.identity);
 
         Destroy(gameObject);
     }
