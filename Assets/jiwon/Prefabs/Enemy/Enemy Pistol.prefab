@@ -592,8 +592,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 7
   fireSpeed: 3
-  fireTimer: 5
-  fireDelay: 0
+  fireTimer: 0
+  fireDelay: 5
   isAttackReady: 0
   bulletPrefab: {fileID: 237179926793995451, guid: 71ea937c8b0cda54ba2df223434c63c9,
     type: 3}
