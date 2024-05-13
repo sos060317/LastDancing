@@ -66,6 +66,8 @@ public abstract class EnemyBase : MonoBehaviour
     private void DieAction()
     {
         health.onDie -= DieAction;
+
+        Destroy(gameObject);
     }
 
     private void OnDrawGizmos()
