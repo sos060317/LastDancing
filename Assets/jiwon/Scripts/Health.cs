@@ -9,6 +9,7 @@ public class Health : MonoBehaviour, IDamageable
     // 나중에 SerializeField 삭제
     [SerializeField] private float currentHealth;
     [SerializeField] private float maxhealth;
+    [SerializeField] private GameObject hitEffect;
     
     [HideInInspector] public Action onDie;
 
@@ -30,7 +31,10 @@ public class Health : MonoBehaviour, IDamageable
             if (currentHealth <= 0)
             {
                 onDie?.Invoke();
+                return;
             }
+
+            Instantiate(hitEffect, transform.position, Quaternion.identity);
         }
     }
 
