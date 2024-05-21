@@ -13,13 +13,14 @@ public class MenuManager : MonoBehaviour
         Instance = this;
     }
 
+    // 문자열 비교 후 해당 UI 표시, 다른 UI는 닫기
     public void OpenMenu(string menuName)
     {
         for(int i = 0; i < menus.Length; i++)
         {
             if (menus[i].menuName == menuName)
             {
-                OpenMenu(menus[i]);
+                menus[i].Open();
             }
             else if (menus[i].open)
             {
@@ -28,6 +29,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    // 메뉴 열기
     public void OpenMenu(Menu menu)
     {
         for (int i = 0; i < menus.Length; i++)
@@ -40,6 +42,7 @@ public class MenuManager : MonoBehaviour
         menu.Open();
     }
 
+    // 메뉴 닫기
     public void CloseMenu(Menu menu)
     {
         menu.Close();
