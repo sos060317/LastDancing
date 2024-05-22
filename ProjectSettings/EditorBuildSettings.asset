@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/jiwon/MainMenu.unity
     guid: f71d994e799a3094191d7161442e5079
   - enabled: 1
-    path: Assets/jiwon/jiwon.unity
-    guid: 232a95249140b764ca18691f00cc57ec
+    path: Assets/Sungwoo/Sungwoo.unity
+    guid: 87f5762b051fc7b4e9082e35d50ccf3c
   m_configObjects: {}
