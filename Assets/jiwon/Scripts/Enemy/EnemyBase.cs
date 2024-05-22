@@ -11,6 +11,7 @@ public abstract class EnemyBase : MonoBehaviour
 {
     [Header("Enemy Base")]
     [SerializeField] protected float range;
+    [SerializeField] protected float scanRange;
     [SerializeField] protected float fireSpeed;
     [SerializeField] protected float fireTimer;
     [SerializeField] protected float fireDelay;
@@ -20,6 +21,8 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected GameObject dieEffect;
     [SerializeField] protected Transform firePoint;
     [SerializeField] public Transform target;
+
+    [SerializeField] protected LayerMask targetLayer;
 
     protected Health health;
     protected Animator anim;
