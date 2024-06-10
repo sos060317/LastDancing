@@ -7087,7 +7087,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 1564833657319864801}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -7846,6 +7847,7 @@ GameObject:
   - component: {fileID: 5510783246677254642}
   - component: {fileID: 5560879418306639070}
   - component: {fileID: 5560879418306639071}
+  - component: {fileID: 1564833657319864801}
   - component: {fileID: 5560879418306639068}
   - component: {fileID: 5560879418306639066}
   - component: {fileID: 5560879418306639067}
@@ -7928,6 +7930,22 @@ CapsuleCollider:
   m_Height: 1.76
   m_Direction: 1
   m_Center: {x: 0, y: 0.87, z: 0}
+--- !u!114 &1564833657319864801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5560879418306639040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!114 &5560879418306639068
 MonoBehaviour:
   m_ObjectHideFlags: 0

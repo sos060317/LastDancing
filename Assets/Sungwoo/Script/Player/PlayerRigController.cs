@@ -43,7 +43,7 @@ public class PlayerRigController : MonoBehaviour
 
     private void Update()
     {
-        if (isStop)
+        if (isStop || !PV.IsMine)
         {
             return;
         }
