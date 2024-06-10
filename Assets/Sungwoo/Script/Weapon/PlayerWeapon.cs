@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using Cinemachine;
+using Photon.Pun;
 
 public class PlayerWeapon : MonoBehaviour
 {
@@ -20,10 +21,20 @@ public class PlayerWeapon : MonoBehaviour
     private bool isStop;
 
     private WeaponRecoil recoil;
+    private PhotonView PV; // 플레이어 동기화
 
     private void Start()
     {
         // 변수 초기화
+        PV = GetComponentInParent<PhotonView>();
+
+        if (!PV.IsMine)
+        {
+            Destroy(playerCamera.gameObject);
+
+            return;
+        }
+
         recoil = GetComponent<WeaponRecoil>();
         recoil.playerCamera = playerCamera;
     }
@@ -54,7 +65,7 @@ public class PlayerWeapon : MonoBehaviour
 
     private void Update()
     {
-        if (isStop)
+        if (isStop || !PV.IsMine)
         {
             return;
         }

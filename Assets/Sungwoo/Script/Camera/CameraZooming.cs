@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using Cinemachine;
+using Photon.Pun;
 
 public class CameraZooming : MonoBehaviour
 {

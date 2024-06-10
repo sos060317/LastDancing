@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isStop;
 
     private Animator anim;
+    private PhotonView PV; // 플레이어 동기화
 
     private Vector2 inputVec;
     private Vector2 moveVec;
@@ -23,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        PV = GetComponentInParent<PhotonView>();
         anim = GetComponent<Animator>();
 
         // 커서 숨기기
@@ -70,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isStop)
+        if (isStop || !PV.IsMine)
         {
             return;
         }
