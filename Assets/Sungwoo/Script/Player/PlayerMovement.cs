@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isStop;
 
     private Animator anim;
+    private PhotonView PV; // 플레이어 동기화
 
     private Vector2 inputVec;
     private Vector2 moveVec;
@@ -23,6 +25,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        PV = GetComponent<PhotonView>();
+
+        if (!PV.IsMine)
+        {
+            return;
+        }
+
         anim = GetComponent<Animator>();
 
         // 커서 숨기기
@@ -46,6 +55,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void TimeStop()
     {
+        if (!PV.IsMine)
+        {
+            return;
+        }
         // 커서 보이기
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -58,6 +71,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void TimePlay()
     {
+        if (!PV.IsMine)
+        {
+            return;
+        }
         // 커서 숨기기
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -70,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isStop)
+        if (isStop || !PV.IsMine)
         {
             return;
         }

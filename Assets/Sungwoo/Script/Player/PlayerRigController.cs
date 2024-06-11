@@ -1,3 +1,4 @@
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
@@ -8,6 +9,13 @@ public class PlayerRigController : MonoBehaviour
     [SerializeField] private Rig bodyRigLayer;
 
     private bool isStop;
+
+    private PhotonView PV; // 플레이어 동기화
+
+    private void Start()
+    {
+        PV = GetComponent<PhotonView>();
+    }
 
     private void OnEnable()
     {
@@ -35,7 +43,7 @@ public class PlayerRigController : MonoBehaviour
 
     private void Update()
     {
-        if (isStop)
+        if (isStop || !PV.IsMine)
         {
             return;
         }
