@@ -14,7 +14,7 @@ public class PlayerRigController : MonoBehaviour
 
     private void Start()
     {
-        PV = GetComponentInParent<PhotonView>();
+        PV = GetComponent<PhotonView>();
     }
 
     private void OnEnable()

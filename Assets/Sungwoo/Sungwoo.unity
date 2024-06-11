@@ -809,7 +809,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1576891136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1053,17 +1053,17 @@ PrefabInstance:
     - target: {fileID: 897398559723950015, guid: 1ebd0aad06ce383429eee915825b6c16,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.38
       objectReference: {fileID: 0}
     - target: {fileID: 897398559723950015, guid: 1ebd0aad06ce383429eee915825b6c16,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.67
+      value: 1.52
       objectReference: {fileID: 0}
     - target: {fileID: 897398559723950015, guid: 1ebd0aad06ce383429eee915825b6c16,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.45
+      value: -5.45
       objectReference: {fileID: 0}
     - target: {fileID: 897398560558925478, guid: 1ebd0aad06ce383429eee915825b6c16,
         type: 3}
@@ -1129,6 +1129,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956040003011816538, guid: 1ebd0aad06ce383429eee915825b6c16,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ebd0aad06ce383429eee915825b6c16, type: 3}

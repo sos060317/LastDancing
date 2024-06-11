@@ -25,7 +25,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        PV = GetComponentInParent<PhotonView>();
+        PV = GetComponent<PhotonView>();
+
+        if (!PV.IsMine)
+        {
+            return;
+        }
+
         anim = GetComponent<Animator>();
 
         // 커서 숨기기
@@ -49,6 +55,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void TimeStop()
     {
+        if (!PV.IsMine)
+        {
+            return;
+        }
         // 커서 보이기
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -61,6 +71,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void TimePlay()
     {
+        if (!PV.IsMine)
+        {
+            return;
+        }
         // 커서 숨기기
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
