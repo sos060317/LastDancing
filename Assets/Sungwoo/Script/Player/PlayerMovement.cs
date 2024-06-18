@@ -2,11 +2,16 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float turnSpeed = 10f;
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private CinemachineVirtualCamera cinemachine;
+    [SerializeField] private CinemachineBrain brain;
+    [SerializeField] private Transform cameraLookAt;
 
     private float turnSpeedMultiplier;
 
@@ -15,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isStop;
 
     private Animator anim;
-    private PhotonView PV; // 플레이어 동기화
+    [SerializeField] private PhotonView PV; // 플레이어 동기화
 
     private Vector2 inputVec;
     private Vector2 moveVec;
@@ -25,18 +30,25 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        PV = GetComponent<PhotonView>();
-
         if (!PV.IsMine)
         {
+            mainCamera.GetUniversalAdditionalCameraData().renderType = CameraRenderType.Overlay;
+            Destroy(cinemachine.transform.gameObject);
+            Destroy(brain);
             return;
         }
 
-        anim = GetComponent<Animator>();
+        if (PV.IsMine)
+        {
+            cinemachine.Follow = transform;
+            cinemachine.LookAt = cameraLookAt;
 
-        // 커서 숨기기
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+            anim = GetComponent<Animator>();
+
+            // 커서 숨기기
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     private void OnEnable()
