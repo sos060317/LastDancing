@@ -35,10 +35,12 @@ public class EnemySpawner : MonoBehaviour
         {
             Vector3 randPos = Random.insideUnitSphere * spawnRange; //360도 구체안에서 랜덤좌표를 지정
 
-            randPos.y = 1;  
+            randPos.y = 1;
 
-            var enemy = Instantiate(enemyPrefab, randPos, Quaternion.identity);
-            enemy.target = GameManager.Instance.curPlayer;
+            Instantiate(enemyPrefab, randPos, Quaternion.identity);
+
+            //var enemy = Instantiate(enemyPrefab, randPos, Quaternion.identity);
+            //enemy.target = GameManager.Instance.curPlayer;
         }
     }
 
