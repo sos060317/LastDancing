@@ -30,8 +30,6 @@ public class PlayerWeapon : MonoBehaviour
 
         if (!PV.IsMine)
         {
-            Destroy(playerCamera.gameObject);
-
             return;
         }
 
