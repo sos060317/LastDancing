@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(BoxCollider))]
@@ -20,9 +21,11 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected GameObject bulletPrefab;
     [SerializeField] protected GameObject dieEffect;
     [SerializeField] protected Transform firePoint;
-    [SerializeField] public Transform target;
 
     [SerializeField] protected LayerMask targetLayer;
+
+    protected Collider[] targets;
+    [SerializeField] protected Transform target;
 
     protected Health health;
     protected Animator anim;
@@ -38,6 +41,12 @@ public abstract class EnemyBase : MonoBehaviour
         health.onDie += DieAction; // 오브젝트 풀링 제작 후 인에이블로 옮기기
 
         fireTimer = fireDelay;
+        SearchNearPlayer();
+    }
+
+    protected virtual void Update()
+    {
+        SearchNearPlayer();
     }
 
     protected virtual void FixedUpdate()
@@ -50,6 +59,20 @@ public abstract class EnemyBase : MonoBehaviour
     }
 
     protected abstract void Attack();
+
+    private void SearchNearPlayer()
+    {
+        targets = Physics.OverlapSphere(transform.position, scanRange, targetLayer);
+
+        if (targets.Length > 0)
+        {
+            target = targets[0].transform;
+        }
+        else
+        {
+            scanRange += 5.0f;
+        }
+    }
 
     private void Move()
     {
@@ -79,6 +102,7 @@ public abstract class EnemyBase : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, range);
+        Gizmos.DrawWireSphere(transform.position, scanRange);
     }
 
     #region 탄막 패턴

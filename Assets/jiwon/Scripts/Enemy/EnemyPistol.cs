@@ -4,13 +4,25 @@ using UnityEngine;
 
 public class EnemyPistol : EnemyBase
 {
-    private void Update()
+    protected override void Start()
     {
+        base.Start();
+    }
+
+    protected override void Update()
+    {
+        if(target == null)
+            return;
+
+        base.Update();
         Attack();
     }
 
     protected override void FixedUpdate()
     {
+        if (target == null)
+            return;
+
         base.FixedUpdate();
     }
 
