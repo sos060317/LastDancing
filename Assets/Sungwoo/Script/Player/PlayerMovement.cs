@@ -189,5 +189,21 @@ public class PlayerMovement : MonoBehaviour
 
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(euler), turnSpeed * turnSpeedMultiplier * Time.deltaTime);
         }
-    }
+    }                   
+
+    // 임시 보류
+    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    //{
+    //    // 데이터 보내기
+    //    if (stream.IsWriting)
+    //    {
+    //        stream.SendNext(transform.position);
+    //        stream.SendNext(transform.rotation);
+    //    }
+    //    else if (stream.IsReading)
+    //    {
+    //        transform.position = (Vector3)stream.ReceiveNext();
+    //        transform.rotation = (Quaternion)stream.ReceiveNext();
+    //    }
+    //}
 }
