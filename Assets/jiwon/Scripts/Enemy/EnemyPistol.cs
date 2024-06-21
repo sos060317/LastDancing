@@ -9,20 +9,16 @@ public class EnemyPistol : EnemyBase
         base.Start();
     }
 
-    protected override void Update()
+    private void Update()
     {
         if(target == null)
             return;
 
-        base.Update();
         Attack();
     }
 
     protected override void FixedUpdate()
     {
-        if (target == null)
-            return;
-
         base.FixedUpdate();
     }
 

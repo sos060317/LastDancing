@@ -14,9 +14,8 @@ public class EnemyShotgun : EnemyBase
         StartCoroutine(aasdf());
     }
 
-    protected override void Update()
+    private void Update()
     {
-        base.Update();
         //Attack();
     }
 
