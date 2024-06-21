@@ -8042,8 +8042,9 @@ GameObject:
   - component: {fileID: 1956040003011816538}
   - component: {fileID: 5560879418306639068}
   - component: {fileID: 5560879418306639066}
-  - component: {fileID: 1564833657319864801}
   - component: {fileID: 5560879418306639067}
+  - component: {fileID: 7808707419964455698}
+  - component: {fileID: 1770650155771711903}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -8142,7 +8143,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 1564833657319864801}
+  - {fileID: 7808707419964455698}
+  - {fileID: 1770650155771711903}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -8179,22 +8181,6 @@ MonoBehaviour:
   aimDuration: 0.1
   aimingRigLayer: {fileID: 897398559939438684}
   bodyRigLayer: {fileID: 897398559567779444}
---- !u!114 &1564833657319864801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5560879418306639040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
 --- !u!114 &5560879418306639067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8217,6 +8203,34 @@ MonoBehaviour:
   - m_Rig: {fileID: 897398560475544094}
     m_Active: 1
   m_Effectors: []
+--- !u!114 &7808707419964455698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5560879418306639040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &1770650155771711903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5560879418306639040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4cd3a4f3d07a8f44825b5ee270fe3c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5560891257748309862
 GameObject:
   m_ObjectHideFlags: 0
