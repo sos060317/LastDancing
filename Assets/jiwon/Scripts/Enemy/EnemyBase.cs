@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(BoxCollider))]
@@ -41,18 +40,15 @@ public abstract class EnemyBase : MonoBehaviour
         health.onDie += DieAction; // 오브젝트 풀링 제작 후 인에이블로 옮기기
 
         fireTimer = fireDelay;
-        SearchNearPlayer();
-    }
-
-    protected virtual void Update()
-    {
-        SearchNearPlayer();
     }
 
     protected virtual void FixedUpdate()
     {
         if (target == null)
+        {
+            SearchNearPlayer();
             return;
+        }
 
         fireTimer += Time.deltaTime;
         Move();
