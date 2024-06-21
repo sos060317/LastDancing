@@ -564,7 +564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 0
+  ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
   Synchronization: 3
@@ -8227,6 +8227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5edecbf5c9a330e44b0f2404ffe33485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothAmount: 10
 --- !u!1 &5560891257748309862
 GameObject:
   m_ObjectHideFlags: 0

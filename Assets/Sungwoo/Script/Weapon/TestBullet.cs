@@ -1,4 +1,5 @@
 using UnityEngine;
+using Photon.Pun;
 
 public class TestBullet : MonoBehaviour
 {
@@ -7,10 +8,12 @@ public class TestBullet : MonoBehaviour
     [SerializeField] private GameObject hitEfffect;
 
     private Rigidbody rigid;
+    private PhotonView pv;
 
     private void Start()
     {
         rigid = GetComponent<Rigidbody>();
+        pv = GetComponent<PhotonView>();
     }
 
     public void Init(float spread)
@@ -29,6 +32,9 @@ public class TestBullet : MonoBehaviour
 
         Instantiate(hitEfffect, transform.position, Quaternion.identity);
 
-        Destroy(gameObject);
+        if (pv.IsMine)
+        {
+            PhotonNetwork.Destroy(gameObject);
+        }
     }
 }

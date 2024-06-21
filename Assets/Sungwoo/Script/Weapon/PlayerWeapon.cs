@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using Cinemachine;
 using Photon.Pun;
+using System.IO;
 
 public class PlayerWeapon : MonoBehaviour
 {
@@ -115,7 +116,9 @@ public class PlayerWeapon : MonoBehaviour
 
     private void ShotBullet()
     {
-        Instantiate(bulletPrefab, shotPos.position, transform.rotation).Init(bulletSpread);
+        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", bulletPrefab.name)
+            , shotPos.position, transform.rotation)
+            .GetComponent<TestBullet>().Init(bulletSpread);
 
         recoil.GenerateRecoil();
 

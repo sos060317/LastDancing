@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2608042576842658021}
   - component: {fileID: 1220329610368265104}
   - component: {fileID: 1220329610368265116}
+  - component: {fileID: 7027365774733828388}
   - component: {fileID: 1220329610368265119}
   m_Layer: 9
   m_Name: Player Weapon Test Bullet
@@ -224,6 +225,29 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &7027365774733828388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220329610368265105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 1220329610368265119}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!114 &1220329610368265119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d06709d8503abb44b435bdf3282a810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 60
+  moveSpeed: 30
   damage: 20
   hitEfffect: {fileID: 725748389856807714, guid: 072bfe309abc5aa459e99092a4ab7a5a,
     type: 3}

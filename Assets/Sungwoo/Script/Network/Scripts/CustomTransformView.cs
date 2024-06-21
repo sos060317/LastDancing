@@ -3,6 +3,8 @@ using Photon.Pun;
 
 public class CustomTransformView : MonoBehaviour, IPunObservable
 {
+    [SerializeField] private float smoothAmount = 10f;
+
     private PhotonView pv;
 
     private Vector3 currentPos;
@@ -28,8 +30,8 @@ public class CustomTransformView : MonoBehaviour, IPunObservable
         }
         else
         {
-            transform.position = Vector3.Lerp(transform.position, currentPos, Time.smoothDeltaTime * 10);
-            transform.rotation = Quaternion.Lerp(transform.rotation, rotate, Time.smoothDeltaTime * 10);
+            transform.position = Vector3.Lerp(transform.position, currentPos, Time.smoothDeltaTime * smoothAmount);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotate, Time.smoothDeltaTime * smoothAmount);
         }
     }
 
