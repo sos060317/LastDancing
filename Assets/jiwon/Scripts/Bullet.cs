@@ -16,12 +16,11 @@ public class Bullet : MonoBehaviour
         transform.Translate(Time.deltaTime * moveSpeed * Vector3.up);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.CompareTag("Player"))
+        if(collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
         }
-
     }
 }
