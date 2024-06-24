@@ -8060,6 +8060,7 @@ GameObject:
   - component: {fileID: 5560879418306639067}
   - component: {fileID: 1770650155771711903}
   - component: {fileID: 7812471588915766561}
+  - component: {fileID: 7015543876096776142}
   m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
@@ -8243,6 +8244,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothAmount: 10
+--- !u!114 &7015543876096776142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5560879418306639040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5afc90f5087868540b002d149a6fb0d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5560891257748309862
 GameObject:
   m_ObjectHideFlags: 0

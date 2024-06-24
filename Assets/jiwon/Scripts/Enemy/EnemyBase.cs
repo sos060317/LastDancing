@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using Photon.Pun;
+using System.IO;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(BoxCollider))]
@@ -21,6 +22,7 @@ public abstract class EnemyBase : MonoBehaviourPun
 
     [SerializeField] protected GameObject bulletPrefab;
     [SerializeField] protected GameObject dieEffect;
+    [SerializeField] protected GameObject expPrefab;
     [SerializeField] protected Transform firePoint;
 
     [SerializeField] protected LayerMask targetLayer;
@@ -109,6 +111,15 @@ public abstract class EnemyBase : MonoBehaviourPun
         health.onDie -= DieAction;
 
         Instantiate(dieEffect, transform.position, Quaternion.identity);
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                var exp = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "ExpPrefab"), transform.position + Random.insideUnitSphere, Quaternion.identity);
+                exp.GetComponent<Rigidbody>().AddExplosionForce(100, transform.position, 30);
+            }
+        }
 
         Destroy(gameObject);
     }
