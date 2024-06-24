@@ -37,9 +37,6 @@ public class TestBullet : MonoBehaviour
 
         Instantiate(hitEfffect, transform.position, Quaternion.identity);
 
-        if (PV.IsMine)
-        {
-            PhotonNetwork.Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }

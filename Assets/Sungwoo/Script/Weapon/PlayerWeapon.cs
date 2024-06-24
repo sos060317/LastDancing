@@ -109,18 +109,32 @@ public class PlayerWeapon : MonoBehaviour
         // 총알 발사
         if (fireTimer >= fireRate && isFiring && aimingRigLayer.weight >= 1) // 조준 애니메이션 실행후 발사하긴위한 aimingRigLayer.weight >= 1
         {
-            ShotBullet();
+            //ShotBullet();
+            PV.RPC(nameof(ShotBullet), RpcTarget.All);
             fireTimer = 0;
         }
     }
 
+    //private void ShotBullet()
+    //{
+    //    PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", bulletPrefab.name)
+    //        , shotPos.position, transform.rotation)
+    //        .GetComponent<TestBullet>().Init(bulletSpread);
+
+    //    recoil.GenerateRecoil();
+
+    //    shootEffect.Emit(30);
+    //}
+
+    [PunRPC]
     private void ShotBullet()
     {
-        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", bulletPrefab.name)
-            , shotPos.position, transform.rotation)
-            .GetComponent<TestBullet>().Init(bulletSpread);
+        Instantiate(bulletPrefab, shotPos.position, transform.rotation).Init(bulletSpread);
 
-        recoil.GenerateRecoil();
+        if (PV.IsMine)
+        {
+            recoil.GenerateRecoil();
+        }
 
         shootEffect.Emit(30);
     }
