@@ -644,6 +644,8 @@ MonoBehaviour:
     type: 3}
   dieEffect: {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5,
     type: 3}
+  expPrefab: {fileID: 3729959304474043597, guid: e6dd5ea5d8fa14c419ed783eb9d83289,
+    type: 3}
   firePoint: {fileID: 9170653018862210482}
   targetLayer:
     serializedVersion: 2
