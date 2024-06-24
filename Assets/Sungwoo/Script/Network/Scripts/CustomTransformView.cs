@@ -10,7 +10,7 @@ public class CustomTransformView : MonoBehaviour, IPunObservable
     private Vector3 currentPos;
     private Quaternion rotate;
 
-    private void Start()
+    private void Awake()
     {
         pv = GetComponent<PhotonView>();
     }
@@ -44,8 +44,15 @@ public class CustomTransformView : MonoBehaviour, IPunObservable
         }
         else if (stream.IsReading)
         {
-            currentPos = (Vector3)stream.ReceiveNext();
-            rotate = (Quaternion)stream.ReceiveNext();
+            try
+            {
+                currentPos = (Vector3)stream.ReceiveNext();
+                rotate = (Quaternion)stream.ReceiveNext();
+            }
+            catch
+            {
+
+            }
         }
     }
 }

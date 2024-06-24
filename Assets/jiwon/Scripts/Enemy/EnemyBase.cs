@@ -1,17 +1,19 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using Photon.Pun;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Health))]
-public abstract class EnemyBase : MonoBehaviour
+public abstract class EnemyBase : MonoBehaviourPun
 {
     [Header("Enemy Base")]
     [SerializeField] protected float range;
-    [SerializeField] protected float scanRange;
+    [SerializeField] protected float firstScanRange;
+    [SerializeField] protected float currentScanRange;
     [SerializeField] protected float fireSpeed;
     [SerializeField] protected float fireTimer;
     [SerializeField] protected float fireDelay;
@@ -20,13 +22,16 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected GameObject bulletPrefab;
     [SerializeField] protected GameObject dieEffect;
     [SerializeField] protected Transform firePoint;
-    [SerializeField] public Transform target;
 
     [SerializeField] protected LayerMask targetLayer;
+
+    protected Collider[] targets;
+    [SerializeField] protected Transform target;
 
     protected Health health;
     protected Animator anim;
     protected NavMeshAgent agent;
+    protected PhotonView PV;
 
     protected readonly int ShootingHash = Animator.StringToHash("shooting");
 
@@ -35,21 +40,59 @@ public abstract class EnemyBase : MonoBehaviour
         health = GetComponent<Health>();
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        PV = GetComponent<PhotonView>();
         health.onDie += DieAction; // 오브젝트 풀링 제작 후 인에이블로 옮기기
 
         fireTimer = fireDelay;
+        currentScanRange = firstScanRange;
     }
 
     protected virtual void FixedUpdate()
     {
-        if (target == null)
+        // 마스터 클라이언트가 아니면 실행하지 않음
+        if(!PhotonNetwork.IsMasterClient)
+        {
             return;
+        }
+
+        if (target == null)
+        {
+            SearchNearPlayer();
+            return;
+        }
 
         fireTimer += Time.deltaTime;
         Move();
     }
 
     protected abstract void Attack();
+
+    private void SearchNearPlayer()
+    {
+        if(target != null)
+        {
+            return;
+        }
+
+        targets = Physics.OverlapSphere(transform.position, currentScanRange, targetLayer);
+
+        if (targets.Length > 0)
+        {
+            currentScanRange = firstScanRange;
+
+            if(targets[0].transform != target)
+            {
+                target = targets[0].transform;
+                return;
+            }
+
+            target = targets[0].transform;
+        }
+        else
+        {
+            currentScanRange += 5.0f;
+        }
+    }
 
     private void Move()
     {
@@ -76,9 +119,21 @@ public abstract class EnemyBase : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void TakeDamage(float damage)
+    {
+        PV.RPC(nameof(RPC_TakeDamage), RpcTarget.All, damage);
+    }
+
+    [PunRPC]
+    public void RPC_TakeDamage(float damage)
+    {
+        health.TakeDamage(damage);
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, range);
+        Gizmos.DrawWireSphere(transform.position, currentScanRange);
     }
 
     #region 탄막 패턴

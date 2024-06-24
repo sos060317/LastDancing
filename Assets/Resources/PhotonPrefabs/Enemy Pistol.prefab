@@ -467,11 +467,13 @@ GameObject:
   - component: {fileID: 9170653019722947658}
   - component: {fileID: 9170653019722947661}
   - component: {fileID: 9170653019722947657}
+  - component: {fileID: -2557816887467038448}
+  - component: {fileID: 1497760392392934375}
   - component: {fileID: 9170653019722947656}
   - component: {fileID: 9170653019722947671}
   m_Layer: 10
   m_Name: Enemy Pistol
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -564,6 +566,45 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-2557816887467038448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9170653019722947670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 1497760392392934375}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &1497760392392934375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9170653019722947670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!114 &9170653019722947656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,6 +634,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 7
+  firstScanRange: 0
+  currentScanRange: 0
   fireSpeed: 3
   fireTimer: 0
   fireDelay: 5
@@ -602,6 +645,9 @@ MonoBehaviour:
   dieEffect: {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5,
     type: 3}
   firePoint: {fileID: 9170653018862210482}
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 2048
   target: {fileID: 0}
 --- !u!1 &9170653019786498590
 GameObject:

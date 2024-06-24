@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1220329610368265116}
   - component: {fileID: 7027365774733828388}
   - component: {fileID: 1220329610368265119}
+  - component: {fileID: -8527861134004885944}
   m_Layer: 9
   m_Name: Player Weapon Test Bullet
   m_TagString: Untagged
@@ -244,7 +245,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 1220329610368265119}
+  - {fileID: -8527861134004885944}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -264,3 +265,16 @@ MonoBehaviour:
   damage: 20
   hitEfffect: {fileID: 725748389856807714, guid: 072bfe309abc5aa459e99092a4ab7a5a,
     type: 3}
+--- !u!114 &-8527861134004885944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220329610368265105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5edecbf5c9a330e44b0f2404ffe33485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothAmount: 10
