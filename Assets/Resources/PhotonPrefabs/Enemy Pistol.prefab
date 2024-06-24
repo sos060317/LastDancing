@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 9170653019722947671}
   m_Layer: 10
   m_Name: Enemy Pistol
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -634,7 +634,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 7
-  scanRange: 20
+  firstScanRange: 0
+  currentScanRange: 0
   fireSpeed: 3
   fireTimer: 0
   fireDelay: 5
@@ -644,10 +645,10 @@ MonoBehaviour:
   dieEffect: {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5,
     type: 3}
   firePoint: {fileID: 9170653018862210482}
-  target: {fileID: 0}
   targetLayer:
     serializedVersion: 2
     m_Bits: 2048
+  target: {fileID: 0}
 --- !u!1 &9170653019786498590
 GameObject:
   m_ObjectHideFlags: 0

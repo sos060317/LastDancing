@@ -8,12 +8,12 @@ public class TestBullet : MonoBehaviour
     [SerializeField] private GameObject hitEfffect;
 
     private Rigidbody rigid;
-    private PhotonView pv;
+    private PhotonView PV;
 
     private void Start()
     {
         rigid = GetComponent<Rigidbody>();
-        pv = GetComponent<PhotonView>();
+        PV = GetComponent<PhotonView>();
     }
 
     public void Init(float spread)
@@ -25,14 +25,19 @@ public class TestBullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.TryGetComponent(out Health health))
+        //if(collision.gameObject.TryGetComponent(out EnemyBase enemyBase))
+        //{
+        //    enemyBase.TakeDamage(damage);
+        //}
+
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            health.TakeDamage(damage);
+            collision.gameObject.GetComponent<EnemyBase>().TakeDamage(damage);
         }
 
         Instantiate(hitEfffect, transform.position, Quaternion.identity);
 
-        if (pv.IsMine)
+        if (PV.IsMine)
         {
             PhotonNetwork.Destroy(gameObject);
         }
