@@ -992,7 +992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.09803922, g: 0.09803922, b: 0.09803922, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4255,7 +4255,7 @@ MonoBehaviour:
   roomListItemPrefab: {fileID: 848336345603047469, guid: 8cef9a0abae83ec4db89a685b858039c,
     type: 3}
   playerListContent: {fileID: 250871976}
-  playerListItemPrefab: {fileID: 1844713801729043864, guid: b8894f8c68219e94c84c2c5cd49bb5e8,
+  playerListItemPrefab: {fileID: 2576122158372564761, guid: 6b5d4104d599e954d9f913a26a94ba87,
     type: 3}
   startGameButton: {fileID: 1820956382}
 --- !u!114 &2146390869
@@ -4307,8 +4307,8 @@ Canvas:
   m_GameObject: {fileID: 2146390867}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 109656711}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
