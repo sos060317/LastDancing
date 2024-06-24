@@ -14,6 +14,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    [SerializeField] private List<Stage> stages = new List<Stage>();
+
+    public int currentKillenemies;
+    public int clearKillenemies;
+
     public Camera mainCamera;
 
     public Transform curPlayer;
@@ -38,5 +43,10 @@ public class GameManager : MonoBehaviour
             LevelManager.Instance.ShowItemCard();
             TimeManager.Instance.TimeStop();
         }
+    }
+
+    private void CheckStageClear()
+    {
+
     }
 }
