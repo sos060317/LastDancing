@@ -30,8 +30,11 @@ public class CustomTransformView : MonoBehaviour, IPunObservable
         }
         else
         {
-            transform.position = Vector3.Lerp(transform.position, currentPos, Time.smoothDeltaTime * smoothAmount);
-            transform.rotation = Quaternion.Lerp(transform.rotation, rotate, Time.smoothDeltaTime * smoothAmount);
+            if (currentPos != Vector3.zero)
+            {
+                transform.position = Vector3.Lerp(transform.position, currentPos, Time.smoothDeltaTime * smoothAmount);
+                transform.rotation = Quaternion.Lerp(transform.rotation, rotate, Time.smoothDeltaTime * smoothAmount);
+            }
         }
     }
 
