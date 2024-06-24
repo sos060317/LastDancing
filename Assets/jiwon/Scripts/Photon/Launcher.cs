@@ -72,7 +72,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         for (int i = 0; i < players.Count(); i++)
         {
             // 플레이어 리스트 프리펩 생성 및 플레이어 정보 초기화
-            Instantiate(playerListItemPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(players[i]);
+            Instantiate(playerListItemPrefab, playerListContent).GetComponentInChildren<PlayerListItem>().SetUp(players[i]);
         }
 
         // 마스터 클라이언트만 게임 시작 버트 표시
@@ -142,6 +142,6 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         // 플레이어 리스트 프리펩 생성 및 플레이어 정보 초기화
-        Instantiate(playerListItemPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(newPlayer);
+        Instantiate(playerListItemPrefab, playerListContent).GetComponentInChildren<PlayerListItem>().SetUp(newPlayer);
     }
 }

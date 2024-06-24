@@ -49,13 +49,8 @@ public abstract class EnemyBase : MonoBehaviourPun
 
     protected virtual void FixedUpdate()
     {
-        if (target == null)
-        {
-            SearchNearPlayer();
-            return;
-        }
-
         fireTimer += Time.deltaTime;
+        SearchNearPlayer();
         Move();
     }
 
@@ -63,11 +58,6 @@ public abstract class EnemyBase : MonoBehaviourPun
 
     private void SearchNearPlayer()
     {
-        if(target != null)
-        {
-            return;
-        }
-
         targets = Physics.OverlapSphere(transform.position, currentScanRange, targetLayer);
 
         if (targets.Length > 0)
@@ -90,6 +80,11 @@ public abstract class EnemyBase : MonoBehaviourPun
 
     private void Move()
     {
+        if (target == null)
+        {
+            return;
+        }
+
         if (Vector3.Distance(transform.position, target.position) <= range)
         {
             agent.speed = 0;
