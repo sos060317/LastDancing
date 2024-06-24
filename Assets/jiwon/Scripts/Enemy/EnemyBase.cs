@@ -49,12 +49,6 @@ public abstract class EnemyBase : MonoBehaviourPun
 
     protected virtual void FixedUpdate()
     {
-        // 마스터 클라이언트가 아니면 실행하지 않음
-        if(!PhotonNetwork.IsMasterClient)
-        {
-            return;
-        }
-
         if (target == null)
         {
             SearchNearPlayer();
