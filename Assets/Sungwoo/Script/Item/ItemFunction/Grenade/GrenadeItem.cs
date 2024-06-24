@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class GrenadeItem : ItemFunctionBase
 {
@@ -11,10 +11,12 @@ public class GrenadeItem : ItemFunctionBase
     private bool isAttacking;
 
     private Transform player;
+    private PhotonView pv;
 
     public override void Init(ItemDetails details)
     {
         this.itemDetails = details;
+        pv = GetComponent<PhotonView>();
     }
 
     public override void Upgrade()
@@ -34,14 +36,20 @@ public class GrenadeItem : ItemFunctionBase
 
         while (true)
         {
-            for (int i = 0; i < itemDetails.itemData[curLevel].itemCount; i++)
-            {
-                var grenade = Instantiate(grenadePrefab, player.position + Vector3.up * 2, Quaternion.identity);
-
-                grenade.Init(3);
-            }
+            pv.RPC(nameof(GenerationGrenade), RpcTarget.All);
 
             yield return YieldInstructionCache.WaitForSeconds(6f);
+        }
+    }
+
+    [PunRPC]
+    private void GenerationGrenade()
+    {
+        for (int i = 0; i < itemDetails.itemData[curLevel].itemCount; i++)
+        {
+            var grenade = Instantiate(grenadePrefab, player.position + Vector3.up * 2, Quaternion.identity);
+
+            grenade.Init(3);
         }
     }
 }

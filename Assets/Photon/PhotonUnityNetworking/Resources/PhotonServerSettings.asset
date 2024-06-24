@@ -42,6 +42,7 @@ MonoBehaviour:
   - RpcAnimation
   - RPC_TakeDamage
   - ShotBullet
+  - GenerationGrenade
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

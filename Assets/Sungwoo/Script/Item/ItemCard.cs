@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Photon.Pun;
+using System.IO;
 
 public class ItemCard : MonoBehaviour
 {
@@ -36,7 +38,8 @@ public class ItemCard : MonoBehaviour
         // 레벨이 0일때
         if (item == null)
         {
-            item = Instantiate(itemDetails.itemScript);
+            item = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "ItemPrefab", "Grenade Item"), Vector3.zero, Quaternion.identity)
+                .GetComponent<ItemFunctionBase>();
             item.Init(itemDetails);
         }
 

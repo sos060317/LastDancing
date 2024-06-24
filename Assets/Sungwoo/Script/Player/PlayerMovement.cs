@@ -43,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
             cinemachine.Follow = transform;
             cinemachine.LookAt = cameraLookAt;
 
+            GameManager.Instance.curPlayer = this.transform;
+
             anim = GetComponent<Animator>();
 
             // Ä¿¼­ ¼û±â±â
