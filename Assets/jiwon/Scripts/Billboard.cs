@@ -12,8 +12,7 @@ public class Billboard : MonoBehaviour
     {
         Camera[] cameras = FindObjectsOfType<Camera>();
 
-        myCamera = cameras.FirstOrDefault(cam =>
-        {
+        myCamera = cameras.FirstOrDefault(cam => {
             PhotonView PV = cam.GetComponent<PhotonView>();
             return PV != null && PV.IsMine;
         });

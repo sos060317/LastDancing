@@ -89,6 +89,7 @@ public abstract class EnemyBase : MonoBehaviourPun
 
         if (Vector3.Distance(transform.position, target.position) <= range)
         {
+            transform.LookAt(target.transform);
             agent.speed = 0;
             isAttackReady = true;
             return;
