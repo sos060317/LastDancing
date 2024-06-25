@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 9151071103312626192}
   - component: {fileID: -5448390151753268328}
   - component: {fileID: 9151071103312626193}
+  - component: {fileID: 8764730750211667891}
   m_Layer: 0
-  m_Name: Grenade Item
+  m_Name: GrenadeItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +52,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 8764730750211667891}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -67,5 +69,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2945d477365838141a6700b8c7b90a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pv: {fileID: 0}
+  itemDetails: {fileID: 11400000, guid: effb18fc635cb374199b65815fc1a3cb, type: 2}
   grenadePrefab: {fileID: 4479735699510134681, guid: ac34d3b845a52424fb16413bd8f1a024,
     type: 3}
+--- !u!114 &8764730750211667891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9151071103312626194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5edecbf5c9a330e44b0f2404ffe33485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothAmount: 10

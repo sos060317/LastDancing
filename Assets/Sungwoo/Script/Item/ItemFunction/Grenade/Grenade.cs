@@ -1,6 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using System.IO;
 
 public class Grenade : MonoBehaviour
 {
@@ -23,23 +24,23 @@ public class Grenade : MonoBehaviour
         yield return YieldInstructionCache.WaitForSeconds(explosionTime);
 
         // 폭발
-        Instantiate(explosionEffect, transform.position, Quaternion.identity).transform.localScale = transform.localScale / 2;
+        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Effects", "ExplosionEffect"), transform.position, Quaternion.identity)
+            .transform.localScale = transform.localScale / 2;
 
         // 미니 수류탄 생성
         for (int i = 0; i < miniGrenadeCount; i++)
         {
-            var grenade = Instantiate(
-                miniGrenade, 
-                transform.position + new Vector3(Random.Range(-0.4f, 0.4f), 0.3f, Random.Range(-0.4f, 0.4f)), 
-                Quaternion.identity);
+            var grenade = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "ItemPrefab", "MiniGrenade"),
+                transform.position + new Vector3(Random.Range(-0.4f, 0.4f), 0.3f, Random.Range(-0.4f, 0.4f)), Quaternion.identity)
+                .GetComponent<Grenade>();
 
             grenade.Init(transform.position, 200f);
         }
-        
+
         // 적들 데미지 주기 
         // ...
 
-        Destroy(gameObject);
+        PhotonNetwork.Destroy(gameObject);
     }
 
     public void Init(int grenadeCount)
@@ -48,6 +49,8 @@ public class Grenade : MonoBehaviour
 
         // 날리기
         rigid.AddForce(new Vector3(Random.Range(-1f, 1f), 1, Random.Range(-1f, 1f)) * 4, ForceMode.Impulse);
+
+        Debug.Log("aa");
 
         miniGrenadeCount = grenadeCount;
 
