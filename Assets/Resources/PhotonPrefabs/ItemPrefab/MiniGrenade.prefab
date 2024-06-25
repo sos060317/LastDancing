@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 4479735699510134680}
   - component: {fileID: 4479735699510134686}
   - component: {fileID: 4479735699510134681}
+  - component: {fileID: -5351888342372042721}
+  - component: {fileID: 3339755490321284177}
   m_Layer: 9
   m_Name: MiniGrenade
   m_TagString: Untagged
@@ -131,3 +133,39 @@ MonoBehaviour:
   miniGrenade: {fileID: 4479735699510134681}
   explosionEffect: {fileID: 1804206099813350, guid: 5ed0a013702bd9f42847584f2fba7b21,
     type: 3}
+--- !u!114 &-5351888342372042721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4479735699510134683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 3339755490321284177}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &3339755490321284177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4479735699510134683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5edecbf5c9a330e44b0f2404ffe33485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothAmount: 10

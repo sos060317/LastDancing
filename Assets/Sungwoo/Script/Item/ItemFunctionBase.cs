@@ -1,8 +1,10 @@
 using UnityEngine;
+using Photon.Pun;
 
 public abstract class ItemFunctionBase : MonoBehaviour
 {
-    protected ItemDetails itemDetails;
+    [HideInInspector] public PhotonView pv;
+    [SerializeField] protected ItemDetails itemDetails;
 
     public abstract void Init(ItemDetails details);
 
