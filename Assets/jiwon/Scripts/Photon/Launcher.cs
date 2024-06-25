@@ -46,7 +46,6 @@ public class Launcher : MonoBehaviourPunCallbacks
         // 로딩 완료 후 title UI 표시
         MenuManager.Instance.OpenMenu("title");
         Debug.Log("Joined Lobby");
-        PhotonNetwork.NickName = "Player " + Random.Range(0, 1000).ToString("0000"); 
     }
 
     // 방 만들기
@@ -68,6 +67,11 @@ public class Launcher : MonoBehaviourPunCallbacks
         roomNameText.text = PhotonNetwork.CurrentRoom.Name;
 
         Player[] players = PhotonNetwork.PlayerList;
+
+        foreach (Transform child in playerListContent)
+        {
+            Destroy(child.gameObject);
+        }
 
         for (int i = 0; i < players.Count(); i++)
         {
