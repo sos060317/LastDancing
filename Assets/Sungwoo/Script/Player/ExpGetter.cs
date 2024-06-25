@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class ExpGetter : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject particle;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerStay(Collider other)
     {
-        
+        if(other.gameObject.CompareTag("EXP"))
+        {
+            Instantiate(particle, other.transform.position, Quaternion.identity);
+
+            Destroy(other.gameObject);
+        }
     }
 }
