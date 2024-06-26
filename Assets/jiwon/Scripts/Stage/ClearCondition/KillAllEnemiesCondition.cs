@@ -7,6 +7,11 @@ using UnityEngine;
 /// </summary>
 public class KillAllEnemiesCondition : ClearCondition
 {
+    public override string SetDescription()
+    {
+        return "Kill All Enemies";
+    }
+
     public override bool IsCleared()
     {
         Debug.Log("killall");

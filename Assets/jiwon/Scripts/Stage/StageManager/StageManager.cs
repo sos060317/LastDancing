@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,15 +7,19 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StageManager : MonoBehaviour
+public class StageManager : MonoBehaviourPun
 {
     [SerializeField] private int stageCount;
+
+    [SerializeField] private TMP_Text stageDescription;
     [SerializeField] private TMP_Dropdown stageDropdown;
+
     [SerializeField] private List<Stage> stages = new List<Stage>();
     [SerializeField] private List<ClearCondition> clearConditions;
 
     private void Start()
     {
+        stageDropdown.gameObject.SetActive(PhotonNetwork.IsMasterClient);
         RunAllDerivedClasses();
         Initialization();
     }
@@ -63,7 +68,7 @@ public class StageManager : MonoBehaviour
     {
         int selectedStageIndex = dropdown.value;
         Stage selectedStage = stages[selectedStageIndex];
-        Debug.Log(selectedStage.clearCondition.IsCleared());
+        stageDescription.text = "Stage " + selectedStageIndex + ": " + selectedStage.clearCondition.SetDescription();
     }
 
     /// <summary>
