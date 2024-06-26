@@ -22,11 +22,6 @@ public class Stage : MonoBehaviour
         clearCondition = _clearCondition;
     }
 
-    private void Start()
-    {
-        
-    }
-
     /// <summary>
     /// 클리어 조건 확인
     /// </summary>

@@ -7,6 +7,11 @@ using UnityEngine;
 /// </summary>
 public class SurvivalTimeLimitCondition : ClearCondition
 {
+    public override string SetDescription()
+    {
+        return "Survival Time Limit";
+    }
+
     public override bool IsCleared()
     {
         Debug.Log("survivaltime");
