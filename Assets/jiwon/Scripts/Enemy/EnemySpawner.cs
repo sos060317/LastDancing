@@ -10,9 +10,6 @@ public class EnemySpawner : MonoBehaviourPun
     [SerializeField] private float spawnTimer; //소환 시간
     [SerializeField] private float spawnDelay; //소환 시간
     [SerializeField] private float spawnCount; //소환 카운트
-    //[SerializeField] private EnemyBase enemyPrefab; //적 프리팹
-
-    //[SerializeField] private Transform target;
 
     private void Start()
     {
@@ -21,6 +18,7 @@ public class EnemySpawner : MonoBehaviourPun
 
     private void Update()
     {
+        // 마스터 클라이언트만 적을 스폰
         if(PhotonNetwork.IsMasterClient)
         {
             spawnDelay += Time.deltaTime;
@@ -33,6 +31,9 @@ public class EnemySpawner : MonoBehaviourPun
         }
     }
 
+    /// <summary>
+    /// 적 스폰 함수
+    /// </summary>
     private void EnemySpawn()
     {
         spawnCount = Random.Range(1, 5);
@@ -43,9 +44,6 @@ public class EnemySpawner : MonoBehaviourPun
             randPos.y = 1;
 
             PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Enemy Pistol"), randPos, Quaternion.identity);
-
-            //var enemy = Instantiate(enemyPrefab, randPos, Quaternion.identity);
-            //enemy.target = GameManager.Instance.curPlayer;
         }
     }
 

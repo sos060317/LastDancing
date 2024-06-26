@@ -4,6 +4,7 @@ using UnityEngine.AI;
 using Photon.Pun;
 using System.IO;
 
+// 적 기본 로직
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(Animator))]
@@ -11,7 +12,7 @@ using System.IO;
 [RequireComponent(typeof(Health))]
 public abstract class EnemyBase : MonoBehaviourPun
 {
-    [Header("Enemy Base")]
+    [Header("Enemy Base")] // 적 기본 스탯
     [SerializeField] protected float range;
     [SerializeField] protected float firstScanRange;
     [SerializeField] protected float currentScanRange;
@@ -58,6 +59,9 @@ public abstract class EnemyBase : MonoBehaviourPun
 
     protected abstract void Attack();
 
+    /// <summary>
+    /// 가장 근처에 있는 플레이어 타겟팅
+    /// </summary>
     private void SearchNearPlayer()
     {
         targets = Physics.OverlapSphere(transform.position, currentScanRange, targetLayer);
@@ -80,6 +84,9 @@ public abstract class EnemyBase : MonoBehaviourPun
         }
     }
 
+    /// <summary>
+    /// 이동 로직
+    /// </summary>
     private void Move()
     {
         if (target == null)
@@ -102,6 +109,9 @@ public abstract class EnemyBase : MonoBehaviourPun
         }
     }
 
+    /// <summary>
+    /// 죽음 액션
+    /// </summary>
     private void DieAction()
     {
         health.onDie -= DieAction;
@@ -120,6 +130,10 @@ public abstract class EnemyBase : MonoBehaviourPun
         Destroy(gameObject);
     }
 
+    /// <summary>
+    /// 데미지 받기 동기화
+    /// </summary>
+    /// <param name="damage"></param>
     public void TakeDamage(float damage)
     {
         PV.RPC(nameof(RPC_TakeDamage), RpcTarget.All, damage);

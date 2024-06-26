@@ -10,13 +10,19 @@ public class RoomListItem : MonoBehaviour
 
     public RoomInfo info;
 
-    // 방 초기화
+    /// <summary>
+    /// 방 초기화
+    /// </summary>
+    /// <param name="_info"></param>
     public void SetUp(RoomInfo _info)
     {
         info = _info;
         text.text = _info.Name;
     }
 
+    /// <summary>
+    /// 방 입장
+    /// </summary>
     public void OnClick()
     {
         Launcher.Instance.JoinRoom(info);

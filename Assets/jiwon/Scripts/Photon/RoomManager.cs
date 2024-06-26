@@ -32,6 +32,11 @@ public class RoomManager : MonoBehaviourPunCallbacks
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    /// <summary>
+    /// 게임 시작 시, 플레이어 매니저 생성
+    /// </summary>
+    /// <param name="scene"></param>
+    /// <param name="loadSceneMode"></param>
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
         if (scene.buildIndex == 1)

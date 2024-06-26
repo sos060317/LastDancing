@@ -10,6 +10,7 @@ public class Billboard : MonoBehaviour
 
     private void Start()
     {
+        // 플레이어의 카메라를 찾음
         Camera[] cameras = FindObjectsOfType<Camera>();
 
         myCamera = cameras.FirstOrDefault(cam => {
@@ -20,6 +21,7 @@ public class Billboard : MonoBehaviour
 
     private void Update()
     {
+        // 플레이어 쪽을 바라봄
         transform.LookAt(myCamera.transform);
         transform.Rotate(Vector3.up * 180);
     }
