@@ -11,6 +11,7 @@ public class UsernameDisplay : MonoBehaviour
 
     private void Start()
     {
+        // 본인 닉네임은 표시 안 함
         if(playerPV.IsMine)
         {
             gameObject.SetActive(false);

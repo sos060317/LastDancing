@@ -31,7 +31,9 @@ public class Launcher : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
     }
 
-    // 서버 연결 콜백 함수
+    /// <summary>
+    /// 서버 연결 콜백 함수
+    /// </summary>
     public override void OnConnectedToMaster()
     {
         // 로비 연결
@@ -40,7 +42,9 @@ public class Launcher : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true;
     }
 
-    // 로비 연결 콜백 함수
+    /// <summary>
+    /// 로비 연결 콜백 함수
+    /// </summary>
     public override void OnJoinedLobby()
     {
         // 로딩 완료 후 title UI 표시
@@ -48,7 +52,9 @@ public class Launcher : MonoBehaviourPunCallbacks
         Debug.Log("Joined Lobby");
     }
 
-    // 방 만들기
+    /// <summary>
+    /// 방 만들기
+    /// </summary>
     public void CreateRoom()
     {
         if(string.IsNullOrEmpty(roomNameInputField.text))
@@ -59,7 +65,9 @@ public class Launcher : MonoBehaviourPunCallbacks
         MenuManager.Instance.OpenMenu("loading");
     }
 
-    // 방 입장 콜백 함수
+    /// <summary>
+    /// 방 입장 콜백 함수
+    /// </summary>
     public override void OnJoinedRoom()
     {
         // 방에 들어가면 room UI 표시
@@ -83,12 +91,20 @@ public class Launcher : MonoBehaviourPunCallbacks
         startGameButton.SetActive(PhotonNetwork.IsMasterClient);
     }
 
+    /// <summary>
+    /// 마스터 클라이언트가 방을 나갔을 때, 마스터 클라이언트 교체
+    /// </summary>
+    /// <param name="newMasterClient"></param>
     public override void OnMasterClientSwitched(Player newMasterClient)
     {
         startGameButton.SetActive(PhotonNetwork.IsMasterClient);
     }
 
-    // 방 만들기 실패 콜백 함수
+    /// <summary>
+    /// 방 만들기 실패 콜백 함수
+    /// </summary>
+    /// <param name="returnCode"></param>
+    /// <param name="message"></param>
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         // 방 입장 실패시 에러 UI 표시
@@ -97,26 +113,36 @@ public class Launcher : MonoBehaviourPunCallbacks
         MenuManager.Instance.OpenMenu("error");
     }
 
+    /// <summary>
+    /// 게임 시작
+    /// </summary>
     public void StartGame()
     {
         PhotonNetwork.LoadLevel(1);
     }
 
-    // 방 나가기
+    /// <summary>
+    /// 방 나가기
+    /// </summary>
     public void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
         MenuManager.Instance.OpenMenu("loading");
     }
 
-    // 방 입장
+    /// <summary>
+    /// 방 입장
+    /// </summary>
+    /// <param name="info"></param>
     public void JoinRoom(RoomInfo info)
     {
         PhotonNetwork.JoinRoom(info.Name);
         MenuManager.Instance.OpenMenu("loading");
     }
 
-    // 방 떠나기 콜백 함수
+    /// <summary>
+    /// 방 떠나기 콜백 함수
+    /// </summary>
     public override void OnLeftRoom()
     {
         // 방 나가면 title UI 표시
@@ -124,7 +150,10 @@ public class Launcher : MonoBehaviourPunCallbacks
         MenuManager.Instance.OpenMenu("loading");
     }
 
-    // 방 리스트 초기화 콜백 함수
+    /// <summary>
+    /// 방 리스트 초기화 콜백 함수
+    /// </summary>
+    /// <param name="roomList"></param>
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         // 방 초기화
@@ -142,7 +171,10 @@ public class Launcher : MonoBehaviourPunCallbacks
         }
     }
 
-    // 플레이어 방 입장 콜백 함수
+    /// <summary>
+    /// 플레이어 방 입장 콜백 함수
+    /// </summary>
+    /// <param name="newPlayer"></param>
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         // 플레이어 리스트 프리펩 생성 및 플레이어 정보 초기화

@@ -21,6 +21,9 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 게임 시작 시, 플레이어 생성
+    /// </summary>
     private void CreateController()
     {
         PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), Vector3.zero, Quaternion.identity);

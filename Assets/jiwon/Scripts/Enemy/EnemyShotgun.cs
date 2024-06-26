@@ -29,6 +29,7 @@ public class EnemyShotgun : EnemyBase
         if (!isAttackReady || fireTimer <= fireDelay)
             return;
 
+        // 고유 공격 패턴
         //AllDirectionRotationsShot(10, 10);
 
         anim.SetTrigger(ShootingHash);

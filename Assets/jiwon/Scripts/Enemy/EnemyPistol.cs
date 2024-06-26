@@ -28,6 +28,7 @@ public class EnemyPistol : EnemyBase
         if (!isAttackReady || fireTimer <= fireDelay)
             return;
 
+        // 고유 공격 패턴
         TargetingSingleShot();
 
         anim.SetTrigger(ShootingHash);
