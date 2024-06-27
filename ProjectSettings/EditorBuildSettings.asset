@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Sungwoo/Sungwoo.unity
     guid: 87f5762b051fc7b4e9082e35d50ccf3c
+  - enabled: 1
+    path: Assets/jiwon/Scene/Stage0.unity
+    guid: 5bbcc62512c3df04283284cfe9157c45
+  - enabled: 1
+    path: Assets/jiwon/Scene/Stage1.unity
+    guid: 7204b801a1c278b4e9c3a29ad372ece4
+  - enabled: 1
+    path: Assets/jiwon/Scene/Stage2.unity
+    guid: e84e0b465c41f2a4983c28215415f681
   m_configObjects: {}

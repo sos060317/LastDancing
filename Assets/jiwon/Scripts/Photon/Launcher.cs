@@ -18,6 +18,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     [SerializeField] private Transform playerListContent;
     [SerializeField] private GameObject playerListItemPrefab;
     [SerializeField] private GameObject startGameButton;
+    [SerializeField] private TMP_Dropdown stageDropdown;
 
     private void Awake()
     {
@@ -89,6 +90,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
         // 마스터 클라이언트만 게임 시작 버트 표시
         startGameButton.SetActive(PhotonNetwork.IsMasterClient);
+        stageDropdown.gameObject.SetActive(PhotonNetwork.IsMasterClient);
     }
 
     /// <summary>
@@ -98,6 +100,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnMasterClientSwitched(Player newMasterClient)
     {
         startGameButton.SetActive(PhotonNetwork.IsMasterClient);
+        stageDropdown.gameObject.SetActive(PhotonNetwork.IsMasterClient);
     }
 
     /// <summary>
@@ -119,6 +122,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     public void StartGame()
     {
         PhotonNetwork.LoadLevel(1);
+        //PhotonNetwork.LoadLevel("Stage" + stageDropdown.value);
     }
 
     /// <summary>
