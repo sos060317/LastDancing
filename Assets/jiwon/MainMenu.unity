@@ -4595,6 +4595,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1693965320}
+  - component: {fileID: 1693965323}
   - component: {fileID: 1693965321}
   - component: {fileID: 1693965322}
   m_Layer: 5
@@ -4661,6 +4662,29 @@ MonoBehaviour:
   stageDropdown: {fileID: 1292422255}
   stages: []
   clearConditions: []
+--- !u!114 &1693965323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693965319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 1693965322}
+  sceneViewId: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1774259377
 GameObject:
   m_ObjectHideFlags: 0
@@ -6144,6 +6168,7 @@ MonoBehaviour:
   playerListItemPrefab: {fileID: 2576122158372564761, guid: 6b5d4104d599e954d9f913a26a94ba87,
     type: 3}
   startGameButton: {fileID: 1820956382}
+  stageDropdown: {fileID: 1292422255}
 --- !u!114 &2146390869
 MonoBehaviour:
   m_ObjectHideFlags: 0

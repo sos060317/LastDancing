@@ -7,7 +7,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StageManager : MonoBehaviourPun
+public class StageManager : MonoBehaviourPun, IPunObservable
 {
     [SerializeField] private int stageCount;
 
@@ -19,7 +19,6 @@ public class StageManager : MonoBehaviourPun
 
     private void Start()
     {
-        stageDropdown.gameObject.SetActive(PhotonNetwork.IsMasterClient);
         RunAllDerivedClasses();
         Initialization();
     }
@@ -105,5 +104,22 @@ public class StageManager : MonoBehaviourPun
         }
 
         return derivedTypes;
+    }
+
+    /// <summary>
+    /// 변수 동기화
+    /// </summary>
+    /// <param name="stream"></param>
+    /// <param name="info"></param>
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if(stream.IsWriting) // 데이터를 보내는 입장
+        {
+            stream.SendNext(stageDescription.text);
+        }
+        else if(stream.IsReading) // 데이터를 받는 입장
+        {
+            stageDescription.text = (string)stream.ReceiveNext();
+        }
     }
 }
