@@ -1,15 +1,14 @@
-using UnityEngine;
-
-public abstract class ClearCondition : MonoBehaviour
+[System.Serializable]   
+public class ClearCondition
 {
     /// <summary>
     /// 스테이지 설명 함수 선언
     /// </summary>
     /// <returns></returns>
-    public abstract string SetDescription();
+    public virtual string SetDescription() => "";
     /// <summary>
     /// 스테이지 클리어 함수 선언
     /// </summary>
     /// <returns></returns>
-    public abstract bool IsCleared();
+    public virtual bool IsCleared() => true;
 }

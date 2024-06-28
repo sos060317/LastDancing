@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Stage : MonoBehaviour
+[System.Serializable]
+public class Stage
 {
     public int stageNumber;
     public string stageName;
