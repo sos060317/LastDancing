@@ -6,6 +6,7 @@ public class ClearCondition
     /// </summary>
     /// <returns></returns>
     public virtual string SetDescription() => "";
+
     /// <summary>
     /// 스테이지 클리어 함수 선언
     /// </summary>

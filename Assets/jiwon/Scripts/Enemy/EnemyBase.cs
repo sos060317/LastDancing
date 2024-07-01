@@ -115,6 +115,7 @@ public abstract class EnemyBase : MonoBehaviourPun
     private void DieAction()
     {
         health.onDie -= DieAction;
+        GameManager.Instance.currentKillenemies++;
 
         Instantiate(dieEffect, transform.position, Quaternion.identity);
 

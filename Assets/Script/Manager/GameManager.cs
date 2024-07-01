@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Stage> stages = new List<Stage>();
 
     public int currentKillenemies;
-    public int clearKillenemies;
+    public int clearKillenemies = 10;
 
     public Camera mainCamera;
 
@@ -43,10 +43,18 @@ public class GameManager : MonoBehaviour
             LevelManager.Instance.ShowItemCard();
             TimeManager.Instance.TimeStop();
         }
+
+        CheckStageClear();
     }
 
+    /// <summary>
+    /// 게임 클리어 조건 확인 함수
+    /// </summary>
     private void CheckStageClear()
     {
-
+        if(clearKillenemies >= currentKillenemies)
+        {
+            StageInformation.Instance.clearCondition.IsCleared();
+        }
     }
 }
