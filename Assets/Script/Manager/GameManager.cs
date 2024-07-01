@@ -13,11 +13,11 @@ public class GameManager : MonoBehaviour
             return instance;
         }
     }
-
-    [SerializeField] private List<Stage> stages = new List<Stage>();
-
+    
     public int currentKillenemies;
     public int clearKillenemies = 10;
+
+    public Transform gameClearHandler;
 
     public Camera mainCamera;
 
