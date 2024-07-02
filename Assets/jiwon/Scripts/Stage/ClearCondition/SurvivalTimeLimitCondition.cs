@@ -12,10 +12,15 @@ public class SurvivalTimeLimitCondition : ClearCondition
         return "Survival Time Limit";
     }
 
+    public override int SetClearCondition()
+    {
+        return 10;
+    }
+
     public override bool IsCleared()
     {
         Debug.Log("survivaltime");
 
-        return false;
+        return GameManager.Instance.currentSurvivalTime >= SetClearCondition();
     }
 }

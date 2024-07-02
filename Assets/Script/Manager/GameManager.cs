@@ -14,8 +14,11 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    public int currentKillenemies;
-    public int clearKillenemies = 10;
+    public int currentKillCount;
+    public int clearKillCount;
+
+    public float currentSurvivalTime;
+    public float clearSurvivalTime;
 
     public Transform gameClearHandler;
 
@@ -35,6 +38,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        InitializationStageClearCondition();
+    }
+
     private void Update()
     {
         // Test
@@ -44,7 +52,15 @@ public class GameManager : MonoBehaviour
             TimeManager.Instance.TimeStop();
         }
 
+        currentSurvivalTime += Time.deltaTime;
+
         CheckStageClear();
+    }
+
+    private void InitializationStageClearCondition()
+    {
+        clearKillCount = StageInformation.Instance.clearCondition.SetClearCondition();
+        clearSurvivalTime = StageInformation.Instance.clearCondition.SetClearCondition();
     }
 
     /// <summary>
@@ -52,9 +68,10 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void CheckStageClear()
     {
-        if(clearKillenemies >= currentKillenemies)
+        if(StageInformation.Instance.clearCondition.IsCleared())
         {
-            StageInformation.Instance.clearCondition.IsCleared();
+            TimeManager.Instance.TimeStop();
+            gameClearHandler.gameObject.SetActive(true);
         }
     }
 }

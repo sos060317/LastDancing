@@ -8,6 +8,12 @@ public class ClearCondition
     public virtual string SetDescription() => "";
 
     /// <summary>
+    /// 스테이지 클리어 조건 설정 함수 선언
+    /// </summary>
+    /// <returns></returns>
+    public virtual int SetClearCondition() => 0;
+
+    /// <summary>
     /// 스테이지 클리어 함수 선언
     /// </summary>
     /// <returns></returns>
