@@ -1,9 +1,9 @@
+using TMPro;
 using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,8 +14,8 @@ public class StageManager : MonoBehaviourPun, IPunObservable
     [SerializeField] private TMP_Text stageDescription;
     [SerializeField] private TMP_Dropdown stageDropdown;
 
-    [SerializeField] private List<Stage> stages = new List<Stage>();
-    [SerializeField] private List<ClearCondition> clearConditions;
+    [SerializeField] private List<Stage> stages = new();
+    [SerializeField] private List<ClearCondition> clearConditions = new();
 
     private void Start()
     {
@@ -36,6 +36,10 @@ public class StageManager : MonoBehaviourPun, IPunObservable
         // 생성한 스테이지 옵션 추가
         SetDropdwonOptions(stages);
 
+        // 처음 스테이지 초기화
+        stageDescription.text = "Stage " + stages[0] + ": " + stages[0].clearCondition.SetDescription();
+        StageInformation.Instance.SetStageInformation(stages[0]);
+
         // 스테이지 옵션 변경 확인
         stageDropdown.onValueChanged.AddListener(delegate {
             DropdownValueChanged(stageDropdown);
@@ -48,7 +52,7 @@ public class StageManager : MonoBehaviourPun, IPunObservable
     /// <param name="stages"></param>
     private void SetDropdwonOptions(List<Stage> stages)
     {
-        List<string> options = new List<string>();
+        List<string> options = new();
 
         foreach(Stage stage in stages)
         {
@@ -68,6 +72,8 @@ public class StageManager : MonoBehaviourPun, IPunObservable
         int selectedStageIndex = dropdown.value;
         Stage selectedStage = stages[selectedStageIndex];
         stageDescription.text = "Stage " + selectedStageIndex + ": " + selectedStage.clearCondition.SetDescription();
+
+        StageInformation.Instance.SetStageInformation(stages[selectedStageIndex]);
     }
 
     /// <summary>
@@ -92,7 +98,7 @@ public class StageManager : MonoBehaviourPun, IPunObservable
     /// <returns></returns>
     private List<Type> FindAllDerivedTypes(Type baseType)
     {
-        List<Type> derivedTypes = new List<Type>();
+        List<Type> derivedTypes = new();
         Assembly assembly = Assembly.GetExecutingAssembly();
 
         foreach(Type type in assembly.GetTypes())
@@ -116,10 +122,12 @@ public class StageManager : MonoBehaviourPun, IPunObservable
         if(stream.IsWriting) // 데이터를 보내는 입장
         {
             stream.SendNext(stageDescription.text);
+            stream.SendNext(stageDropdown.value);
         }
         else if(stream.IsReading) // 데이터를 받는 입장
         {
             stageDescription.text = (string)stream.ReceiveNext();
+            stageDropdown.value = (int)stream.ReceiveNext();
         }
     }
 }

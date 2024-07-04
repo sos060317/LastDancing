@@ -27,9 +27,21 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+        //연결 끊기
+        PhotonNetwork.Disconnect();
+
         // 서버 연결
         Debug.Log("Connecting to Master");
         PhotonNetwork.ConnectUsingSettings();
+    }
+
+    /// <summary>
+    /// 연결 끊겼을 때 호출
+    /// </summary>
+    /// <param name="cause"></param>
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        print("Disconnecting to Server");
     }
 
     /// <summary>

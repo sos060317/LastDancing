@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,10 +13,15 @@ public class KillAllEnemiesCondition : ClearCondition
         return "Kill All Enemies";
     }
 
+    public override int SetClearCondition()
+    {
+        return 10;
+    }
+
     public override bool IsCleared()
     {
         Debug.Log("killall");
 
-        return false;
+        return GameManager.Instance.currentKillCount >= SetClearCondition();
     }
 }

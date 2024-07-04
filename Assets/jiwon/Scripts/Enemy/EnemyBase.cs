@@ -115,6 +115,7 @@ public abstract class EnemyBase : MonoBehaviourPun
     private void DieAction()
     {
         health.onDie -= DieAction;
+        GameManager.Instance.currentKillCount++;
 
         Instantiate(dieEffect, transform.position, Quaternion.identity);
 
@@ -145,11 +146,11 @@ public abstract class EnemyBase : MonoBehaviourPun
         health.TakeDamage(damage);
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position, range);
-        Gizmos.DrawWireSphere(transform.position, currentScanRange);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawWireSphere(transform.position, range);
+    //    Gizmos.DrawWireSphere(transform.position, currentScanRange);
+    //}
 
     #region ≈∫∏∑ ∆–≈œ
     #region ªÁπÊ ≈∫∏∑

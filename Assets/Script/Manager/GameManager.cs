@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,11 +14,14 @@ public class GameManager : MonoBehaviour
             return instance;
         }
     }
+    
+    public int currentKillCount;
+    public int clearKillCount;
 
-    [SerializeField] private List<Stage> stages = new List<Stage>();
+    public float currentSurvivalTime;
+    public float clearSurvivalTime;
 
-    public int currentKillenemies;
-    public int clearKillenemies;
+    public Transform gameClearHandler;
 
     public Camera mainCamera;
 
@@ -35,6 +39,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        InitializationStageClearCondition();
+        Debug.Log(StageInformation.Instance.clearCondition.SetDescription());
+    }
+
     private void Update()
     {
         // Test
@@ -43,10 +53,27 @@ public class GameManager : MonoBehaviour
             LevelManager.Instance.ShowItemCard();
             TimeManager.Instance.TimeStop();
         }
+
+        currentSurvivalTime += Time.deltaTime;
+
+        CheckStageClear();
     }
 
+    private void InitializationStageClearCondition()
+    {
+        clearKillCount = StageInformation.Instance.clearCondition.SetClearCondition();
+        clearSurvivalTime = StageInformation.Instance.clearCondition.SetClearCondition();
+    }
+
+    /// <summary>
+    /// 게임 클리어 조건 확인 함수
+    /// </summary>
     private void CheckStageClear()
     {
-
+        if(StageInformation.Instance.clearCondition.IsCleared())
+        {
+            TimeManager.Instance.TimeStop();
+            gameClearHandler.gameObject.SetActive(true);
+        }
     }
 }
