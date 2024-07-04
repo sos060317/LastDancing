@@ -122,10 +122,12 @@ public class StageManager : MonoBehaviourPun, IPunObservable
         if(stream.IsWriting) // 데이터를 보내는 입장
         {
             stream.SendNext(stageDescription.text);
+            stream.SendNext(stageDropdown.value);
         }
         else if(stream.IsReading) // 데이터를 받는 입장
         {
             stageDescription.text = (string)stream.ReceiveNext();
+            stageDropdown.value = (int)stream.ReceiveNext();
         }
     }
 }
