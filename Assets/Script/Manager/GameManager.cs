@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         InitializationStageClearCondition();
+        Debug.Log(StageInformation.Instance.clearCondition.SetDescription());
     }
 
     private void Update()

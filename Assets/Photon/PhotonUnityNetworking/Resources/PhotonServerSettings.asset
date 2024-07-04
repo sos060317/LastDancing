@@ -45,6 +45,7 @@ MonoBehaviour:
   - GenerationGrenade
   - Init
   - Upgrade
+  - RPC_DropdownValueChanged
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
