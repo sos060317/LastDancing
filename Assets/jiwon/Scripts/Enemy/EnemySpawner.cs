@@ -11,8 +11,15 @@ public class EnemySpawner : MonoBehaviourPun
     [SerializeField] private float spawnDelay; //소환 시간
     [SerializeField] private float spawnCount; //소환 카운트
 
+    [SerializeField] private string[] enemyPrefabs;
+
     private void Start()
     {
+        enemyPrefabs = new string[]
+        {
+            Path.Combine("PhotonPrefabs", "Enemy", "Enemy Pistol"),
+        };
+
         spawnDelay = spawnTimer - 3.0f;
     }
 
@@ -37,13 +44,14 @@ public class EnemySpawner : MonoBehaviourPun
     private void EnemySpawn()
     {
         spawnCount = Random.Range(1, 5);
-        for(int i = 0; i < spawnCount; i++)
-        {
-            Vector3 randPos = Random.insideUnitSphere * spawnRange; //360도 구체안에서 랜덤좌표를 지정
 
+        for (int i = 0; i < spawnCount; i++)
+        {
+            Vector3 randPos = Random.insideUnitSphere * spawnRange; // 360도 구체안에서 랜덤좌표를 지정
+            string randomEnemy = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)]; // 미리 파싱한 랜덤 적 프리팹 설정
             randPos.y = 1;
 
-            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Enemy Pistol"), randPos, Quaternion.identity);
+            PhotonNetwork.Instantiate(randomEnemy, randPos, Quaternion.identity);
         }
     }
 
