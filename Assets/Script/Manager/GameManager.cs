@@ -48,11 +48,11 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         // Test
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            LevelManager.Instance.ShowItemCard();
-            TimeManager.Instance.TimeStop();
-        }
+        //if (Input.GetKeyDown(KeyCode.K))
+        //{
+        //    LevelManager.Instance.ShowItemCard();
+        //    TimeManager.Instance.TimeStop();
+        //}
 
         currentSurvivalTime += Time.deltaTime;
 

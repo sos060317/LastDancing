@@ -1,10 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class ExpGetter : MonoBehaviour
 {
     [SerializeField] private GameObject particle;
+
+    private PhotonView pv;
+
+    private void Start()
+    {
+        pv = GetComponent<PhotonView>();
+    }
 
     private void OnTriggerStay(Collider other)
     {
@@ -12,7 +18,12 @@ public class ExpGetter : MonoBehaviour
         {
             Instantiate(particle, other.transform.position, Quaternion.identity);
 
-            Destroy(other.gameObject);
+            if (pv.IsMine)
+            {
+                EXPManager.Instance.ExpPlus();
+            }
+
+            PhotonNetwork.Destroy(other.gameObject);
         }
     }
 }
