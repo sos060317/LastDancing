@@ -19,13 +19,9 @@ public class Exp : MonoBehaviour
         col = GetComponent<Collider>();
     }
 
-    private void Update()
-    {
-        MoveToTarget();
-    }
-
     private void FixedUpdate()
     {
+        MoveToTarget();
         CheckPlayer();
     }
 
