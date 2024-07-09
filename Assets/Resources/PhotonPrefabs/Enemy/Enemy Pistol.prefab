@@ -650,6 +650,9 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 2048
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 256
   target: {fileID: 0}
 --- !u!1 &9170653019786498590
 GameObject:
