@@ -20,8 +20,6 @@ public class KillAllEnemiesCondition : ClearCondition
 
     public override bool IsCleared()
     {
-        Debug.Log("killall");
-
         return GameManager.Instance.currentKillCount >= SetClearCondition();
     }
 }

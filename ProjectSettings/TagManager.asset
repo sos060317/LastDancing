@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - FxTemporaire
   - EXP
+  - Object
+  - Ground
   layers:
   - Default
   - TransparentFX
