@@ -26,7 +26,7 @@ public abstract class EnemyBase : MonoBehaviourPun
     [SerializeField] protected GameObject expPrefab;
     [SerializeField] protected Transform firePoint;
 
-    [SerializeField] protected LayerMask targetLayer;
+    [SerializeField] protected LayerMask targetLayer, obstructionMask;
 
     protected Collider[] targets;
     [SerializeField] protected Transform target;
@@ -145,12 +145,6 @@ public abstract class EnemyBase : MonoBehaviourPun
     {
         health.TakeDamage(damage);
     }
-
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.DrawWireSphere(transform.position, range);
-    //    Gizmos.DrawWireSphere(transform.position, currentScanRange);
-    //}
 
     #region 탄막 패턴
     #region 사방 탄막
@@ -321,4 +315,17 @@ public abstract class EnemyBase : MonoBehaviourPun
     }
     #endregion
     #endregion
+
+    protected bool FieldOfViewCheck()
+    {
+        // 장애물 검사하기
+        Transform targetPlayer = targets[0].transform;
+        Vector3 directionToTarget = (targetPlayer.position - transform.position).normalized;
+        float distanceToTarget = Vector3.Distance(transform.position, targetPlayer.position);
+
+        if(!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
+            return true;
+        else
+            return false;
+    }
 }
