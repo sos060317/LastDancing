@@ -9,6 +9,8 @@ using System.IO;
 [RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(PhotonView))]
+[RequireComponent(typeof(PhotonTransformView))]
 [RequireComponent(typeof(Health))]
 public abstract class EnemyBase : MonoBehaviourPun
 {

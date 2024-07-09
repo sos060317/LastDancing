@@ -9,7 +9,7 @@ AnimatorOverrideController:
   m_Name: AcEnemyShotgun
   m_Controller: {fileID: 9100000, guid: 63dcff2156aa1724d89e1d27aab11d22, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: 6fcd1c3ba91f8b943acf9a53fe8f9e55, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 53446b7c3eb21d24d9a1a188dd70080c, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 38df02da4b329ac48b45e5cc4d0a8acf, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: c729c12713b4483489c7ae38ce65ee5b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0fa766d5e8c3ec242bb0a95bb496cbbe, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6fcd1c3ba91f8b943acf9a53fe8f9e55, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ec70ee2c68805a940abc74b76f7d2c21, type: 2}

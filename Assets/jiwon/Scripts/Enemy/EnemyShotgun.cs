@@ -10,13 +10,14 @@ public class EnemyShotgun : EnemyBase
     protected override void Start()
     {
         base.Start();
-
-        StartCoroutine(aasdf());
     }
 
     private void Update()
     {
-        //Attack();
+        if (target == null)
+            return;
+
+        Attack();
     }
 
     protected override void FixedUpdate()
@@ -30,30 +31,10 @@ public class EnemyShotgun : EnemyBase
             return;
 
         // 고유 공격 패턴
-        //AllDirectionRotationsShot(10, 10);
+        SpreadShot(pelletCount, spreadAngle);
 
         anim.SetTrigger(ShootingHash);
 
         fireTimer = 0;
-    }
-
-    IEnumerator aasdf()
-    {
-        CircleShot(10);
-        yield return new WaitForSeconds(3f);
-        CircleCircleShapeShot(10, 5);
-        yield return new WaitForSeconds(3f);
-        CircleDelayShot(10);
-        yield return new WaitForSeconds(3f);
-        CircleDelayCircleShapeShot(10, 5);
-        yield return new WaitForSeconds(3f);
-        TargetingSingleShot();
-        yield return new WaitForSeconds(3f);
-        TargetingCircleShapeShot(10);
-        yield return new WaitForSeconds(3f);
-        SpreadShot(10, 30);
-        yield return new WaitForSeconds(3f);
-        AllDirectionRotationsShot(10, 10);
-        yield return new WaitForSeconds(3f);
     }
 }

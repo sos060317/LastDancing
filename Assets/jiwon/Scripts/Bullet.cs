@@ -29,7 +29,6 @@ public class Bullet : MonoBehaviour
                 health.OnDamage(damage);
             }
 
-            Debug.Log("hit!");
             Destroy(gameObject);
         }
     }
