@@ -19,8 +19,6 @@ public class SurvivalTimeLimitCondition : ClearCondition
 
     public override bool IsCleared()
     {
-        Debug.Log("survivaltime");
-
         return GameManager.Instance.currentSurvivalTime >= SetClearCondition();
     }
 }

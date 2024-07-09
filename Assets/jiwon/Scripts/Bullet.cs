@@ -18,8 +18,11 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if(collision.gameObject.CompareTag("Player") ||
+           collision.gameObject.CompareTag("Object") ||
+           collision.gameObject.CompareTag("Ground"))
         {
+            Debug.Log("hit!");
             Destroy(gameObject);
         }
     }
