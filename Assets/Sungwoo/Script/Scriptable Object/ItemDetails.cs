@@ -7,6 +7,7 @@ public class ItemDetails : ScriptableObject
 
     public Sprite itemImage;
     public string itemName;
+    public string itemPathName;
 
     #endregion
 
