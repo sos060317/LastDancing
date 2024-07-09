@@ -6,6 +6,8 @@ public class Thorn : MonoBehaviour
 {
     [SerializeField] private AnimationCurve curve;
 
+    private float attackDamage;
+
     Vector3 pos;
 
     private void Start()
@@ -17,6 +19,11 @@ public class Thorn : MonoBehaviour
         transform.position = pos;
 
         StartCoroutine(AttackMove());
+    }
+
+    public void Init(float damage)
+    {
+        attackDamage = damage;
     }
 
     private IEnumerator AttackMove()

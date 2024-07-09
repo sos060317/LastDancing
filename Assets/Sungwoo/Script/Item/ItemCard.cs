@@ -38,7 +38,7 @@ public class ItemCard : MonoBehaviour
         // 레벨이 0일때
         if (item == null)
         {
-            item = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "ItemPrefab", "GrenadeItem"), Vector3.zero, Quaternion.identity)
+            item = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "ItemPrefab", itemDetails.itemPathName), Vector3.zero, Quaternion.identity)
                 .GetComponent<ItemFunctionBase>();
             item.Init(itemDetails);
         }

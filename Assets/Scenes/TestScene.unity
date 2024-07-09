@@ -451,54 +451,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.1
---- !u!1 &129374362
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 129374364}
-  - component: {fileID: 129374363}
-  m_Layer: 0
-  m_Name: Thorn Item
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &129374363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129374362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 126db4a26fcae08449414d4744e80ccd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pv: {fileID: 0}
-  itemDetails: {fileID: 0}
-  thornPrefab: {fileID: 1547188293137430, guid: c88bebc9f42262a4595175158008899e,
-    type: 3}
---- !u!4 &129374364
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129374362}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.186, y: 0, z: 4.297}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &188686814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5345,7 +5297,7 @@ Transform:
   - {fileID: 1567336858}
   - {fileID: 1516545683}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1776181475
 GameObject:
@@ -5654,9 +5606,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: effb18fc635cb374199b65815fc1a3cb, type: 2}
   - {fileID: 11400000, guid: effb18fc635cb374199b65815fc1a3cb, type: 2}
   - {fileID: 11400000, guid: effb18fc635cb374199b65815fc1a3cb, type: 2}
-  - {fileID: 11400000, guid: effb18fc635cb374199b65815fc1a3cb, type: 2}
-  - {fileID: 11400000, guid: effb18fc635cb374199b65815fc1a3cb, type: 2}
-  - {fileID: 11400000, guid: effb18fc635cb374199b65815fc1a3cb, type: 2}
+  - {fileID: 11400000, guid: 72371e0632a2706478ae25469702b1df, type: 2}
+  - {fileID: 11400000, guid: 72371e0632a2706478ae25469702b1df, type: 2}
+  - {fileID: 11400000, guid: 72371e0632a2706478ae25469702b1df, type: 2}
 --- !u!4 &2119629405
 Transform:
   m_ObjectHideFlags: 0

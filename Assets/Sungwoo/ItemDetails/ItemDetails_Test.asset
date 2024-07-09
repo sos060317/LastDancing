@@ -15,6 +15,7 @@ MonoBehaviour:
   itemImage: {fileID: 7482667652216324306, guid: b595d4e67b4aa51499f836388ac30955,
     type: 3}
   itemName: "\uBD84\uD65C \uC218\uB958\uD0C4"
+  itemPathName: GrenadeItem
   itemData:
   - itemCount: 1
     itemDamage: 10
@@ -23,6 +24,15 @@ MonoBehaviour:
       \uC218\uB958\uD0C4\uC774 \uB098\uC635\uB2C8\uB2E4."
   - itemCount: 2
     itemDamage: 10
+    itemDesc: "\uC218\uB958\uD0C4 \uAC1C\uC218 1 \uC99D\uAC00"
+  - itemCount: 2
+    itemDamage: 11
+    itemDesc: "\uB370\uBBF8\uC9C0 1 \uC99D\uAC00"
+  - itemCount: 2
+    itemDamage: 14
+    itemDesc: "\uB370\uBBF8\uC9C0 3 \uC99D\uAC00"
+  - itemCount: 3
+    itemDamage: 14
     itemDesc: "\uC218\uB958\uD0C4 \uAC1C\uC218 1 \uC99D\uAC00"
   itemScript: {fileID: 9151071103312626193, guid: 077bd6ea1c967c843b03f455ae42c6c8,
     type: 3}

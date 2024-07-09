@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96bf87b62bb34541b8fd3e6028228cd, type: 3}
+  m_Name: ItemDetails_Test 1
+  m_EditorClassIdentifier: 
+  itemImage: {fileID: 7482667652216324306, guid: b595d4e67b4aa51499f836388ac30955,
+    type: 3}
+  itemName: "\uAC00\uC2DC"
+  itemPathName: ThornItem
+  itemData:
+  - itemCount: 1
+    itemDamage: 5
+    itemDesc: "\uD50C\uB808\uC774\uC5B4 \uC8FC\uBCC0\uC5D0 \uAC00\uC2DC\uB97C \uC0DD\uC131\uD569\uB2C8\uB2E4."
+  - itemCount: 1
+    itemDamage: 7
+    itemDesc: "\uB370\uBBF8\uC9C0 2 \uC99D\uAC00"
+  - itemCount: 1
+    itemDamage: 10
+    itemDesc: "\uB370\uBBF8\uC9C0 3 \uC99D\uAC00"
+  - itemCount: 1
+    itemDamage: 13
+    itemDesc: "\uB370\uBBF8\uC9C0 3 \uC99D\uAC00"
+  itemScript: {fileID: 1550296040654095241, guid: 9d42638f1c156224e88c433a924bbc01,
+    type: 3}
