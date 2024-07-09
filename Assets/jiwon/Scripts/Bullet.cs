@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] private float damage;
+
     private float moveSpeed = 10f;
 
     private void Start()
@@ -22,6 +24,11 @@ public class Bullet : MonoBehaviour
            collision.gameObject.CompareTag("Object") ||
            collision.gameObject.CompareTag("Ground"))
         {
+            if (collision.transform.TryGetComponent(out PlayerHealth health))
+            {
+                health.OnDamage(damage);
+            }
+
             Debug.Log("hit!");
             Destroy(gameObject);
         }
