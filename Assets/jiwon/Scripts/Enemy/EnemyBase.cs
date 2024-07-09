@@ -9,6 +9,8 @@ using System.IO;
 [RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(PhotonView))]
+[RequireComponent(typeof(PhotonTransformView))]
 [RequireComponent(typeof(Health))]
 public abstract class EnemyBase : MonoBehaviourPun
 {
@@ -94,7 +96,7 @@ public abstract class EnemyBase : MonoBehaviourPun
             return;
         }
 
-        if (Vector3.Distance(transform.position, target.position) <= range)
+        if (Vector3.Distance(transform.position, target.position) <= range && ObstructionCheck())
         {
             transform.LookAt(target.transform);
             agent.speed = 0;
@@ -316,10 +318,14 @@ public abstract class EnemyBase : MonoBehaviourPun
     #endregion
     #endregion
 
-    protected bool FieldOfViewCheck()
+    /// <summary>
+    /// 전방에 장애물이 있는지 없는지 확인
+    /// </summary>
+    /// <returns></returns>
+    protected bool ObstructionCheck()
     {
         // 장애물 검사하기
-        Transform targetPlayer = targets[0].transform;
+        Transform targetPlayer = target;
         Vector3 directionToTarget = (targetPlayer.position - transform.position).normalized;
         float distanceToTarget = Vector3.Distance(transform.position, targetPlayer.position);
 

@@ -18,6 +18,7 @@ public class EnemySpawner : MonoBehaviourPun
         enemyPrefabs = new string[]
         {
             Path.Combine("PhotonPrefabs", "Enemy", "Enemy Pistol"),
+            Path.Combine("PhotonPrefabs", "Enemy", "Enemy Shotgun"),
         };
 
         spawnDelay = spawnTimer - 3.0f;
