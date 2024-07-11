@@ -1101,6 +1101,8 @@ MonoBehaviour:
   gameClearHandler: {fileID: 647214598}
   mainCamera: {fileID: 0}
   curPlayer: {fileID: 0}
+  killText: {fileID: 1372914124}
+  survivalTimeText: {fileID: 566011047}
 --- !u!4 &453960768
 Transform:
   m_ObjectHideFlags: 0
@@ -1914,11 +1916,11 @@ RectTransform:
   m_Father: {fileID: 460071213}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -350}
-  m_SizeDelta: {x: 700, y: 159}
-  m_Pivot: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 207.3, y: -50}
+  m_SizeDelta: {x: 1000, y: 160}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &566011047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1939,7 +1941,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Scroe
+  m_text: 'Survival Time: 99999'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3311,11 +3313,11 @@ RectTransform:
   m_Father: {fileID: 460071213}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -180}
-  m_SizeDelta: {x: 700, y: 159}
-  m_Pivot: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 207.3, y: 150}
+  m_SizeDelta: {x: 530, y: 160}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1372914124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3336,7 +3338,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Kill
+  m_text: 'Kill: 99999'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -1,6 +1,7 @@
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -26,6 +27,9 @@ public class GameManager : MonoBehaviour
     public Camera mainCamera;
 
     public Transform curPlayer;
+
+    [SerializeField] private TMP_Text killText;
+    [SerializeField] private TMP_Text survivalTimeText;
 
     private void Awake()
     {
@@ -73,6 +77,10 @@ public class GameManager : MonoBehaviour
         if(StageInformation.Instance.clearCondition.IsCleared())
         {
             TimeManager.Instance.TimeStop();
+
+            killText.text = "KILL: " + currentKillCount; 
+            survivalTimeText.text = "Survival Time: " + clearSurvivalTime;
+
             gameClearHandler.gameObject.SetActive(true);
         }
     }
