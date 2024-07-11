@@ -119,6 +119,7 @@ public abstract class EnemyBase : MonoBehaviourPun
         health.onDie -= DieAction;
         GameManager.Instance.currentKillCount++;
 
+        // 이걸 코루틴으로(?)
         Instantiate(dieEffect, transform.position, Quaternion.identity);
 
         if (PhotonNetwork.IsMasterClient)

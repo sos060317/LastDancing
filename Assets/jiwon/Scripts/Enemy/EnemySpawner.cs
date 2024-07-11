@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using Photon.Pun;
 using System.IO;
 
@@ -50,9 +51,14 @@ public class EnemySpawner : MonoBehaviourPun
         {
             Vector3 randPos = Random.insideUnitSphere * spawnRange; // 360도 구체안에서 랜덤좌표를 지정
             string randomEnemy = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)]; // 미리 파싱한 랜덤 적 프리팹 설정
-            randPos.y = 1;
+            randPos.y = 0;
 
-            PhotonNetwork.Instantiate(randomEnemy, randPos, Quaternion.identity);
+            NavMeshHit hit;
+
+            if(NavMesh.SamplePosition(randPos, out hit, 10.0f, 1))
+            {
+                PhotonNetwork.Instantiate(randomEnemy, randPos, Quaternion.identity);
+            }
         }
     }
 
