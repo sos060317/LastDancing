@@ -1075,7 +1075,7 @@ MonoBehaviour:
     m_InputAxisName: Mouse Y
     m_InputAxisValue: 0
     m_InvertInput: 1
-    m_MinValue: -70
+    m_MinValue: -60
     m_MaxValue: 70
     m_Wrap: 0
     m_Recentering:
@@ -6407,6 +6407,8 @@ GameObject:
   - component: {fileID: 897398559557931236}
   - component: {fileID: 897398559557931234}
   - component: {fileID: 897398559557931233}
+  - component: {fileID: 3104075959566987416}
+  - component: {fileID: 7835568648626839638}
   m_Layer: 0
   m_Name: CM FreeLook1
   m_TagString: Untagged
@@ -6523,6 +6525,52 @@ MonoBehaviour:
   zoomSpeed: 20
   cinemachineCameraOffset: {fileID: 897398559557931236}
   cinemachineCameraComponent: {fileID: 897398559557931235}
+--- !u!114 &3104075959566987416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897398559557931239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 256
+  m_IgnoreTag: Player
+  m_TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_MinimumDistanceFromTarget: 0.01
+  m_AvoidObstacles: 1
+  m_DistanceLimit: 0
+  m_MinimumOcclusionTime: 0
+  m_CameraRadius: 0
+  m_Strategy: 0
+  m_MaximumEffort: 4
+  m_SmoothingTime: 0
+  m_Damping: 0
+  m_DampingWhenOccluded: 0
+  m_OptimalTargetDistance: 0
+--- !u!114 &7835568648626839638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897398559557931239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4700f9f03ad19f94baf0367cb7a9c988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Width: 2
+  m_Damping: 6
+  m_MinFOV: 30
+  m_MaxFOV: 60
 --- !u!1 &897398559567779446
 GameObject:
   m_ObjectHideFlags: 0
@@ -6729,7 +6777,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 40
+  field of view: 60
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
