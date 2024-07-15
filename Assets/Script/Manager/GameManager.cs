@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TMP_Text killText;
     [SerializeField] private TMP_Text survivalTimeText;
+    [SerializeField] private TMP_Text inGameKillText;
+    [SerializeField] private TMP_Text inGameSurvivalTimeText;
 
     private void Awake()
     {
@@ -58,15 +60,25 @@ public class GameManager : MonoBehaviour
         //    TimeManager.Instance.TimeStop();
         //}
 
-        currentSurvivalTime += Time.deltaTime;
-
         CheckStageClear();
+        SetScore();
     }
 
     private void InitializationStageClearCondition()
     {
         clearKillCount = StageInformation.Instance.clearCondition.SetClearCondition();
         clearSurvivalTime = StageInformation.Instance.clearCondition.SetClearCondition();
+    }
+
+    private void SetScore()
+    {
+        if (gameClearHandler.gameObject.activeSelf)
+            return;
+
+        currentSurvivalTime += Time.deltaTime;
+
+        inGameKillText.text = "KILL: " + currentKillCount.ToString();
+        inGameSurvivalTimeText.text = "Game Score: " + ((int)currentSurvivalTime).ToString();
     }
 
     /// <summary>
@@ -78,8 +90,8 @@ public class GameManager : MonoBehaviour
         {
             TimeManager.Instance.TimeStop();
 
-            killText.text = "KILL: " + currentKillCount; 
-            survivalTimeText.text = "Survival Time: " + clearSurvivalTime;
+            killText.text = "KILL: " + currentKillCount;
+            survivalTimeText.text = "Survival Time: " + currentSurvivalTime;
 
             gameClearHandler.gameObject.SetActive(true);
         }
