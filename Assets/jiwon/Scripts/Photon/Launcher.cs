@@ -20,6 +20,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject startGameButton;
     [SerializeField] private TMP_Dropdown stageDropdown;
 
+    PhotonView PV;
+
     private void Awake()
     {
         Instance = this;
@@ -27,6 +29,8 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+        PV = GetComponent<PhotonView>();
+
         //연결 끊기
         PhotonNetwork.Disconnect();
 
@@ -87,22 +91,47 @@ public class Launcher : MonoBehaviourPunCallbacks
         MenuManager.Instance.OpenMenu("room");
         roomNameText.text = PhotonNetwork.CurrentRoom.Name;
 
-        Player[] players = PhotonNetwork.PlayerList;
+        UpdatePlayerList();
 
+        // 마스터 클라이언트만 게임 시작 버트 표시
+        startGameButton.SetActive(PhotonNetwork.IsMasterClient);
+        stageDropdown.gameObject.SetActive(PhotonNetwork.IsMasterClient);
+    }
+
+    /// <summary>
+    /// 플레이어 입장 시 콜백 함수
+    /// </summary>
+    /// <param name="newPlayer"></param>
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        UpdatePlayerList();
+    }
+
+    /// <summary>
+    /// 플레이어 퇴장 시 콜백 함수
+    /// </summary>
+    /// <param name="otherPlayer"></param>
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        UpdatePlayerList();
+    }
+
+    private void UpdatePlayerList()
+    {
         foreach (Transform child in playerListContent)
         {
             Destroy(child.gameObject);
         }
 
+        Player[] players = PhotonNetwork.PlayerList;
+
         for (int i = 0; i < players.Count(); i++)
         {
             // 플레이어 리스트 프리펩 생성 및 플레이어 정보 초기화
             Instantiate(playerListItemPrefab, playerListContent).GetComponentInChildren<PlayerListItem>().SetUp(players[i]);
+            // 플레이어 리스트 프리펩 생성 및 플레이어 정보 초기화
+            //Instantiate(playerListItemPrefab, playerListContent).GetComponentInChildren<PlayerListItem>().SetUp(newPlayer);
         }
-
-        // 마스터 클라이언트만 게임 시작 버트 표시
-        startGameButton.SetActive(PhotonNetwork.IsMasterClient);
-        stageDropdown.gameObject.SetActive(PhotonNetwork.IsMasterClient);
     }
 
     /// <summary>
@@ -185,15 +214,5 @@ public class Launcher : MonoBehaviourPunCallbacks
                 continue;
             Instantiate(roomListItemPrefab, roomListContent).GetComponent<RoomListItem>().SetUp(roomList[i]);
         }
-    }
-
-    /// <summary>
-    /// 플레이어 방 입장 콜백 함수
-    /// </summary>
-    /// <param name="newPlayer"></param>
-    public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-        // 플레이어 리스트 프리펩 생성 및 플레이어 정보 초기화
-        Instantiate(playerListItemPrefab, playerListContent).GetComponentInChildren<PlayerListItem>().SetUp(newPlayer);
     }
 }
