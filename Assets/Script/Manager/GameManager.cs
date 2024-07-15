@@ -90,8 +90,8 @@ public class GameManager : MonoBehaviour
         {
             TimeManager.Instance.TimeStop();
 
-            killText.text = "KILL: " + currentKillCount;
-            survivalTimeText.text = "Survival Time: " + currentSurvivalTime;
+            killText.text = "KILL: " + currentKillCount.ToString();
+            survivalTimeText.text = "Survival Time: " + ((int)currentSurvivalTime).ToString();
 
             gameClearHandler.gameObject.SetActive(true);
         }
