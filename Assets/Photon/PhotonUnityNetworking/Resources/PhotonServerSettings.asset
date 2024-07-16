@@ -47,6 +47,7 @@ MonoBehaviour:
   - Upgrade
   - RPC_DropdownValueChanged
   - RPC_PlayerListUpdate
+  - RPC_DestroyEXPPrefab
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
