@@ -46,6 +46,7 @@ MonoBehaviour:
   - Init
   - Upgrade
   - RPC_DropdownValueChanged
+  - RPC_PlayerListUpdate
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
