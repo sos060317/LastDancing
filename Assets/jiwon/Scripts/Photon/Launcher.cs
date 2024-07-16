@@ -73,7 +73,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         if(string.IsNullOrEmpty(roomNameInputField.text))
         {
             return;
-        }        
+        }
 
         PhotonNetwork.CreateRoom(roomNameInputField.text);
         MenuManager.Instance.OpenMenu("loading");
@@ -201,7 +201,8 @@ public class Launcher : MonoBehaviourPunCallbacks
         {
             Destroy(trans.gameObject);
         }
-        
+        //(roomList[i].CustomProperties.ContainsKey("isGameStarted") &&
+        //        (bool)roomList[i].CustomProperties["isGameStarted"])
         // 입장 가능한 방 표시
         for (int i = 0; i < roomList.Count; i++)
         {
