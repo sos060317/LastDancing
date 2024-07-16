@@ -40,7 +40,10 @@ public class GrenadeItem : ItemFunctionBase
 
         while (true)
         {
-            GenerationGrenade();
+            for (int i = 0; i < itemDetails.itemData[curLevel].itemCount; i++)
+            {
+                GenerationGrenade();
+            }
 
             yield return YieldInstructionCache.WaitForSeconds(6f);
         }
@@ -51,6 +54,6 @@ public class GrenadeItem : ItemFunctionBase
         var grenade = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "ItemPrefab", "Grenade"),
                 player.position + Vector3.up * 2, Quaternion.identity).GetComponent<Grenade>();
 
-        grenade.Init(3);
+        grenade.Init(3, itemDetails.itemData[curLevel].itemDamage);
     }
 }

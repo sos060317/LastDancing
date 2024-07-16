@@ -134,6 +134,10 @@ MonoBehaviour:
     type: 3}
   explosionEffect: {fileID: 1804206099813350, guid: 5ed0a013702bd9f42847584f2fba7b21,
     type: 3}
+  attackRange: 3
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &-6171099104171420886
 MonoBehaviour:
   m_ObjectHideFlags: 0

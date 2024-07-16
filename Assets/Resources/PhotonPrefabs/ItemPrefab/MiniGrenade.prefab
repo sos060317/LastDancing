@@ -133,6 +133,10 @@ MonoBehaviour:
   miniGrenade: {fileID: 4479735699510134681}
   explosionEffect: {fileID: 1804206099813350, guid: 5ed0a013702bd9f42847584f2fba7b21,
     type: 3}
+  attackRange: 2
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &-5351888342372042721
 MonoBehaviour:
   m_ObjectHideFlags: 0

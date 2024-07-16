@@ -43,4 +43,12 @@ public class Thorn : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out EnemyBase enemyBase))
+        {
+            enemyBase.TakeDamage(attackDamage);
+        }
+    }
 }
