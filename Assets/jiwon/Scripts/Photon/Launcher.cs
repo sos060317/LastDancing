@@ -20,8 +20,6 @@ public class Launcher : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject startGameButton;
     [SerializeField] private TMP_Dropdown stageDropdown;
 
-    PhotonView PV;
-
     private void Awake()
     {
         Instance = this;
@@ -29,8 +27,6 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        PV = GetComponent<PhotonView>();
-
         //연결 끊기
         PhotonNetwork.Disconnect();
 
@@ -77,7 +73,8 @@ public class Launcher : MonoBehaviourPunCallbacks
         if(string.IsNullOrEmpty(roomNameInputField.text))
         {
             return;
-        }
+        }        
+
         PhotonNetwork.CreateRoom(roomNameInputField.text);
         MenuManager.Instance.OpenMenu("loading");
     }
@@ -129,8 +126,6 @@ public class Launcher : MonoBehaviourPunCallbacks
         {
             // 플레이어 리스트 프리펩 생성 및 플레이어 정보 초기화
             Instantiate(playerListItemPrefab, playerListContent).GetComponentInChildren<PlayerListItem>().SetUp(players[i]);
-            // 플레이어 리스트 프리펩 생성 및 플레이어 정보 초기화
-            //Instantiate(playerListItemPrefab, playerListContent).GetComponentInChildren<PlayerListItem>().SetUp(newPlayer);
         }
     }
 
@@ -206,13 +201,18 @@ public class Launcher : MonoBehaviourPunCallbacks
         {
             Destroy(trans.gameObject);
         }
-
+        
         // 입장 가능한 방 표시
-        for(int i = 0; i < roomList.Count; i++)
+        for (int i = 0; i < roomList.Count; i++)
         {
             if (roomList[i].RemovedFromList)
                 continue;
             Instantiate(roomListItemPrefab, roomListContent).GetComponent<RoomListItem>().SetUp(roomList[i]);
         }
+    }
+
+    public void GameQuit()
+    {
+        Application.Quit();
     }
 }
