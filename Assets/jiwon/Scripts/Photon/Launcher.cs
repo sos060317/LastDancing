@@ -5,6 +5,7 @@ using Photon.Pun;
 using TMPro;
 using Photon.Realtime;
 using System.Linq;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
@@ -19,6 +20,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject playerListItemPrefab;
     [SerializeField] private GameObject startGameButton;
     [SerializeField] private TMP_Dropdown stageDropdown;
+
+    private Dictionary<string, RoomInfo> cachedRoomList = new Dictionary<string, RoomInfo>();
 
     private void Awake()
     {
@@ -73,9 +76,17 @@ public class Launcher : MonoBehaviourPunCallbacks
         if(string.IsNullOrEmpty(roomNameInputField.text))
         {
             return;
-        }        
+        }
 
-        PhotonNetwork.CreateRoom(roomNameInputField.text);
+        RoomOptions roomOptions = new RoomOptions();
+
+        // 방이 게임이 시작되지 않은 상태로 설정
+        Hashtable customProperties = new Hashtable();
+        customProperties.Add("isGameStarted", false);
+        roomOptions.CustomRoomProperties = customProperties;
+        roomOptions.CustomRoomPropertiesForLobby = new string[] { "isGameStarted" };
+
+        PhotonNetwork.CreateRoom(roomNameInputField.text, roomOptions, TypedLobby.Default);
         MenuManager.Instance.OpenMenu("loading");
     }
 
@@ -157,6 +168,11 @@ public class Launcher : MonoBehaviourPunCallbacks
     /// </summary>
     public void StartGame()
     {
+        // 방을 게임이 시작한 상태로 전환
+        Hashtable customProperties = new Hashtable();
+        customProperties["isGameStarted"] = true;
+        PhotonNetwork.CurrentRoom.SetCustomProperties(customProperties);
+
         PhotonNetwork.LoadLevel(1);
         //PhotonNetwork.LoadLevel("Stage" + stageDropdown.value);
     }
@@ -197,17 +213,32 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         // 방 초기화
-        foreach(Transform trans in roomListContent)
+        foreach (Transform trans in roomListContent)
         {
             Destroy(trans.gameObject);
         }
-        
-        // 입장 가능한 방 표시
-        for (int i = 0; i < roomList.Count; i++)
+
+        // 방 목록 업데이트
+        foreach (var info in roomList)
         {
-            if (roomList[i].RemovedFromList)
+            if (info.RemovedFromList)
+            {
+                cachedRoomList.Remove(info.Name);
+            }
+            else
+            {
+                cachedRoomList[info.Name] = info;
+            }
+        }
+
+        // 입장 가능한 방 표시
+        foreach (var info in cachedRoomList.Values)
+        {
+            // 이미 게임을 시작한 방이라면 생성하지 않음
+            if (info.CustomProperties.ContainsKey("isGameStarted") && (bool)info.CustomProperties["isGameStarted"] == true)
                 continue;
-            Instantiate(roomListItemPrefab, roomListContent).GetComponent<RoomListItem>().SetUp(roomList[i]);
+
+            Instantiate(roomListItemPrefab, roomListContent).GetComponent<RoomListItem>().SetUp(info);
         }
     }
 
