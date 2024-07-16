@@ -78,7 +78,15 @@ public class Launcher : MonoBehaviourPunCallbacks
             return;
         }
 
-        PhotonNetwork.CreateRoom(roomNameInputField.text);
+        RoomOptions roomOptions = new RoomOptions();
+
+        // 방이 게임이 시작되지 않은 상태로 설정
+        Hashtable customProperties = new Hashtable();
+        customProperties.Add("isGameStarted", false);
+        roomOptions.CustomRoomProperties = customProperties;
+        roomOptions.CustomRoomPropertiesForLobby = new string[] { "isGameStarted" };
+
+        PhotonNetwork.CreateRoom(roomNameInputField.text, roomOptions, TypedLobby.Default);
         MenuManager.Instance.OpenMenu("loading");
     }
 
@@ -160,9 +168,11 @@ public class Launcher : MonoBehaviourPunCallbacks
     /// </summary>
     public void StartGame()
     {
-        Hashtable customProperty = new Hashtable();
-        customProperty["IsGameStarted"] = true;
-        PhotonNetwork.CurrentRoom.SetCustomProperties(customProperty);
+        // 방을 게임이 시작한 상태로 전환
+        Hashtable customProperties = new Hashtable();
+        customProperties["isGameStarted"] = true;
+        PhotonNetwork.CurrentRoom.SetCustomProperties(customProperties);
+
         PhotonNetwork.LoadLevel(1);
         //PhotonNetwork.LoadLevel("Stage" + stageDropdown.value);
     }
@@ -224,15 +234,10 @@ public class Launcher : MonoBehaviourPunCallbacks
         // 입장 가능한 방 표시
         foreach (var info in cachedRoomList.Values)
         {
-            if (info.CustomProperties != null &&
-                info.CustomProperties.ContainsKey("IsGameStarted") &&
-                (bool)info.CustomProperties["IsGameStarted"])
-            {
-                Debug.Log("true");
+            // 이미 게임을 시작한 방이라면 생성하지 않음
+            if (info.CustomProperties.ContainsKey("isGameStarted") && (bool)info.CustomProperties["isGameStarted"] == true)
                 continue;
-            }
 
-            Debug.Log("false");
             Instantiate(roomListItemPrefab, roomListContent).GetComponent<RoomListItem>().SetUp(info);
         }
     }
