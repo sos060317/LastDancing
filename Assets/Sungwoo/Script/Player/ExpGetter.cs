@@ -23,7 +23,7 @@ public class ExpGetter : MonoBehaviour
                 EXPManager.Instance.ExpPlus();
             }
 
-            PhotonNetwork.Destroy(other.gameObject);
+            other.gameObject.GetComponent<Exp>().DestroyEXPPrefab();
         }
     }
 }

@@ -5,6 +5,7 @@ using Photon.Pun;
 using TMPro;
 using Photon.Realtime;
 using System.Linq;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
@@ -19,6 +20,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject playerListItemPrefab;
     [SerializeField] private GameObject startGameButton;
     [SerializeField] private TMP_Dropdown stageDropdown;
+
+    private Dictionary<string, RoomInfo> cachedRoomList = new Dictionary<string, RoomInfo>();
 
     private void Awake()
     {
@@ -74,7 +77,16 @@ public class Launcher : MonoBehaviourPunCallbacks
         {
             return;
         }
-        PhotonNetwork.CreateRoom(roomNameInputField.text);
+
+        RoomOptions roomOptions = new RoomOptions();
+
+        // 방이 게임이 시작되지 않은 상태로 설정
+        Hashtable customProperties = new Hashtable();
+        customProperties.Add("isGameStarted", false);
+        roomOptions.CustomRoomProperties = customProperties;
+        roomOptions.CustomRoomPropertiesForLobby = new string[] { "isGameStarted" };
+
+        PhotonNetwork.CreateRoom(roomNameInputField.text, roomOptions, TypedLobby.Default);
         MenuManager.Instance.OpenMenu("loading");
     }
 
@@ -87,22 +99,45 @@ public class Launcher : MonoBehaviourPunCallbacks
         MenuManager.Instance.OpenMenu("room");
         roomNameText.text = PhotonNetwork.CurrentRoom.Name;
 
-        Player[] players = PhotonNetwork.PlayerList;
+        UpdatePlayerList();
 
+        // 마스터 클라이언트만 게임 시작 버트 표시
+        startGameButton.SetActive(PhotonNetwork.IsMasterClient);
+        stageDropdown.gameObject.SetActive(PhotonNetwork.IsMasterClient);
+    }
+
+    /// <summary>
+    /// 플레이어 입장 시 콜백 함수
+    /// </summary>
+    /// <param name="newPlayer"></param>
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        UpdatePlayerList();
+    }
+
+    /// <summary>
+    /// 플레이어 퇴장 시 콜백 함수
+    /// </summary>
+    /// <param name="otherPlayer"></param>
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        UpdatePlayerList();
+    }
+
+    private void UpdatePlayerList()
+    {
         foreach (Transform child in playerListContent)
         {
             Destroy(child.gameObject);
         }
+
+        Player[] players = PhotonNetwork.PlayerList;
 
         for (int i = 0; i < players.Count(); i++)
         {
             // 플레이어 리스트 프리펩 생성 및 플레이어 정보 초기화
             Instantiate(playerListItemPrefab, playerListContent).GetComponentInChildren<PlayerListItem>().SetUp(players[i]);
         }
-
-        // 마스터 클라이언트만 게임 시작 버트 표시
-        startGameButton.SetActive(PhotonNetwork.IsMasterClient);
-        stageDropdown.gameObject.SetActive(PhotonNetwork.IsMasterClient);
     }
 
     /// <summary>
@@ -133,6 +168,11 @@ public class Launcher : MonoBehaviourPunCallbacks
     /// </summary>
     public void StartGame()
     {
+        // 방을 게임이 시작한 상태로 전환
+        Hashtable customProperties = new Hashtable();
+        customProperties["isGameStarted"] = true;
+        PhotonNetwork.CurrentRoom.SetCustomProperties(customProperties);
+
         PhotonNetwork.LoadLevel(1);
         //PhotonNetwork.LoadLevel("Stage" + stageDropdown.value);
     }
@@ -173,27 +213,37 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         // 방 초기화
-        foreach(Transform trans in roomListContent)
+        foreach (Transform trans in roomListContent)
         {
             Destroy(trans.gameObject);
         }
 
-        // 입장 가능한 방 표시
-        for(int i = 0; i < roomList.Count; i++)
+        // 방 목록 업데이트
+        foreach (var info in roomList)
         {
-            if (roomList[i].RemovedFromList)
+            if (info.RemovedFromList)
+            {
+                cachedRoomList.Remove(info.Name);
+            }
+            else
+            {
+                cachedRoomList[info.Name] = info;
+            }
+        }
+
+        // 입장 가능한 방 표시
+        foreach (var info in cachedRoomList.Values)
+        {
+            // 이미 게임을 시작한 방이라면 생성하지 않음
+            if (info.CustomProperties.ContainsKey("isGameStarted") && (bool)info.CustomProperties["isGameStarted"] == true)
                 continue;
-            Instantiate(roomListItemPrefab, roomListContent).GetComponent<RoomListItem>().SetUp(roomList[i]);
+
+            Instantiate(roomListItemPrefab, roomListContent).GetComponent<RoomListItem>().SetUp(info);
         }
     }
 
-    /// <summary>
-    /// 플레이어 방 입장 콜백 함수
-    /// </summary>
-    /// <param name="newPlayer"></param>
-    public override void OnPlayerEnteredRoom(Player newPlayer)
+    public void GameQuit()
     {
-        // 플레이어 리스트 프리펩 생성 및 플레이어 정보 초기화
-        Instantiate(playerListItemPrefab, playerListContent).GetComponentInChildren<PlayerListItem>().SetUp(newPlayer);
+        Application.Quit();
     }
 }

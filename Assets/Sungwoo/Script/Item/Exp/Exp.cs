@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,10 +14,13 @@ public class Exp : MonoBehaviour
 
     private Transform target = null;
 
+    PhotonView PV;
+
     private void Start()
     {
         rigid = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
+        PV = GetComponent<PhotonView>();
     }
 
     private void FixedUpdate()
@@ -64,6 +68,17 @@ public class Exp : MonoBehaviour
             rigid.useGravity = false;
             col.isTrigger = true;
         }
+    }
+
+    public void DestroyEXPPrefab()
+    {
+        PV.RPC(nameof(RPC_DestroyEXPPrefab), RpcTarget.All);
+    }
+
+    [PunRPC]
+    private void RPC_DestroyEXPPrefab()
+    {
+        Destroy(gameObject);
     }
 
     private void OnDrawGizmos()
