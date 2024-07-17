@@ -5,8 +5,13 @@ using System;
 
 public class TimeManager : MonoBehaviour
 {
+    // 플레이어
     public Action TimeStopAction;
     public Action TimePlayAction;
+
+    // 스포너
+    public Action SpawnStopAction;
+    public Action SpawnPlayAction;
 
     private static TimeManager instance = null;
 
@@ -38,5 +43,15 @@ public class TimeManager : MonoBehaviour
     public void TimePlay()
     {
         TimePlayAction?.Invoke();
+    }
+
+    public void SpawnStop()
+    {
+        SpawnStopAction?.Invoke();
+    }
+
+    public void SpawnPlay()
+    {
+        SpawnPlayAction?.Invoke();
     }
 }

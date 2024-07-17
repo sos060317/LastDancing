@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Photon.Pun;
 using System.IO;
+using UnityEngine.SocialPlatforms;
 
 // 적 기본 로직
 [RequireComponent(typeof(Rigidbody))]
@@ -38,6 +39,8 @@ public abstract class EnemyBase : MonoBehaviourPun
     protected NavMeshAgent agent;
     protected PhotonView PV;
 
+    private bool isStop;
+
     protected readonly int ShootingHash = Animator.StringToHash("shooting");
 
     protected virtual void Start()
@@ -52,8 +55,17 @@ public abstract class EnemyBase : MonoBehaviourPun
         currentScanRange = firstScanRange;
     }
 
+    protected virtual void Update()
+    {
+        if (isStop)
+            return;
+    }
+
     protected virtual void FixedUpdate()
     {
+        if (isStop)
+            return;
+
         fireTimer += Time.deltaTime;
         SearchNearPlayer();
         Move();

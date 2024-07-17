@@ -14,6 +14,8 @@ public class EnemySpawner : MonoBehaviourPun
 
     [SerializeField] private string[] enemyPrefabs;
 
+    private bool isStop;
+
     private void Start()
     {
         enemyPrefabs = new string[]
@@ -27,6 +29,10 @@ public class EnemySpawner : MonoBehaviourPun
 
     private void Update()
     {
+        Debug.Log(isStop);
+        if (isStop)
+            return;
+
         // 마스터 클라이언트만 적을 스폰
         if(PhotonNetwork.IsMasterClient)
         {
@@ -38,6 +44,34 @@ public class EnemySpawner : MonoBehaviourPun
                 spawnDelay = 0;
             }
         }
+    }
+
+    protected virtual void OnEnable()
+    {
+        if (!PhotonNetwork.IsMasterClient)
+            return;
+        // 적 스폰 멈춤 이벤트 등록
+        TimeManager.Instance.SpawnStopAction += SpawnStop;
+        TimeManager.Instance.SpawnStopAction += SpawnPlay;
+    }
+
+    protected virtual void OnDisable()
+    {
+        if (!PhotonNetwork.IsMasterClient)
+            return;
+        // 적 스폰 멈춤 이벤트 등록 해제
+        TimeManager.Instance.SpawnStopAction -= SpawnStop;
+        TimeManager.Instance.SpawnStopAction -= SpawnPlay;
+    }
+
+    private void SpawnStop()
+    {
+        isStop = true;
+    }
+
+    private void SpawnPlay()
+    {
+        isStop = false;
     }
 
     /// <summary>

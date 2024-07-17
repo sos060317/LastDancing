@@ -10,8 +10,10 @@ public class EnemyPistol : EnemyBase
         base.Start();
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+
         if (target == null)
             return;
 

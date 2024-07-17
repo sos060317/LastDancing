@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
         if(StageInformation.Instance.clearCondition.IsCleared())
         {
             TimeManager.Instance.TimeStop();
+            TimeManager.Instance.SpawnStop();
 
             killText.text = "KILL: " + currentKillCount.ToString();
             survivalTimeText.text = "Survival Time: " + ((int)currentSurvivalTime).ToString();
