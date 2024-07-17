@@ -202,6 +202,7 @@ MonoBehaviour:
   target: {fileID: 0}
   pelletCount: 10
   spreadAngle: 90
+  shotSound: {fileID: 8300000, guid: 1b766da7cc2d648aa84e36cb5fe8abcb, type: 3}
 --- !u!1 &103421725205555261
 GameObject:
   m_ObjectHideFlags: 0
