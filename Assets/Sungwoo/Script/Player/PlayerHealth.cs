@@ -1,13 +1,11 @@
 using UnityEngine;
 using Photon.Pun;
-using System.Collections;
-using UnityEngine.UI;
-using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public float maxHealth;
-    public float curHealth;
+    [SerializeField] private float maxHealth;
+
+    private float curHealth;
 
     private PhotonView pv;
 
@@ -32,7 +30,7 @@ public class PlayerHealth : MonoBehaviour
 
             if(curHealth <= 0)
             {
-                RespawnManager.Instance.PlayerRespawn(this.gameObject);
+                this.gameObject.SetActive(false);
             }
         }
     }
