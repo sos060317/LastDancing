@@ -7715,7 +7715,7 @@ GameObject:
   - component: {fileID: 5163096787962924105}
   - component: {fileID: 4516372533605047786}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: Username Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8451,6 +8451,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  respwanTime: 10
+  respwanBackground: {fileID: 0}
+  respwanTimer: {fileID: 0}
 --- !u!1 &5560891257748309862
 GameObject:
   m_ObjectHideFlags: 0
@@ -9874,7 +9877,7 @@ GameObject:
   - component: {fileID: 2153245585526324940}
   - component: {fileID: 6089407189005402417}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Username Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
