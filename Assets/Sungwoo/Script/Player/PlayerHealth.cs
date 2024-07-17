@@ -24,6 +24,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void OnDamage(float damage)
     {
+        if (GameManager.Instance.gameClearHandler.gameObject.activeSelf)
+            return;
+
         curHealth -= damage;
 
         if (pv.IsMine)

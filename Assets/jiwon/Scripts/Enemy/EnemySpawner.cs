@@ -14,6 +14,8 @@ public class EnemySpawner : MonoBehaviourPun
 
     [SerializeField] private string[] enemyPrefabs;
 
+    private bool isStop;
+
     private void Start()
     {
         enemyPrefabs = new string[]

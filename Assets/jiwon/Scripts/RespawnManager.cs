@@ -55,7 +55,7 @@ public class RespawnManager : MonoBehaviour
         {
             respwanTime -= Time.deltaTime;
             respwanTimer.text = ((int)respwanTime).ToString();
-            yield return null;
+            yield return Time.deltaTime;
         }
 
         respwanBackground.gameObject.SetActive(false);

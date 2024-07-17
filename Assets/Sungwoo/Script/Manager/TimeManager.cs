@@ -5,6 +5,7 @@ using System;
 
 public class TimeManager : MonoBehaviour
 {
+    // 플레이어
     public Action TimeStopAction;
     public Action TimePlayAction;
 
