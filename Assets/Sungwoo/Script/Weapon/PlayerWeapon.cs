@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using Cinemachine;
 using Photon.Pun;
-using System.IO;
 
 public class PlayerWeapon : MonoBehaviour
 {
@@ -14,6 +11,7 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private Rig aimingRigLayer;
     [SerializeField] private CinemachineVirtualCamera playerCamera;
     [SerializeField] private ParticleSystem shootEffect;
+    [SerializeField] private AudioClip sound;
 
     private float fireTimer = 0f;
     private float bulletSpread = 0.05f;
@@ -134,6 +132,7 @@ public class PlayerWeapon : MonoBehaviour
         if (PV.IsMine)
         {
             recoil.GenerateRecoil();
+            SoundManager.Instance.PlaySound(sound, shotPos.position, Random.Range(0.85f, 1.1f));
         }
 
         shootEffect.Emit(30);

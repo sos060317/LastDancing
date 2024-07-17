@@ -595,6 +595,7 @@ MonoBehaviour:
   aimingRigLayer: {fileID: 897398559939438684}
   playerCamera: {fileID: 897398559557931235}
   shootEffect: {fileID: 897398559472296947}
+  sound: {fileID: 8300000, guid: 65201ddabb4144f6a8fb9480120b7656, type: 3}
 --- !u!114 &897398558551439918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6724,11 +6725,11 @@ GameObject:
   m_Component:
   - component: {fileID: 897398559723950015}
   - component: {fileID: 897398559723949984}
-  - component: {fileID: 897398559723949985}
   - component: {fileID: 897398559723950014}
   - component: {fileID: 897398559723950013}
   - component: {fileID: 963372368489346730}
   - component: {fileID: 5729143802362962846}
+  - component: {fileID: 7297474831994419986}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -6777,7 +6778,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 40
+  field of view: 32.326942
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -6795,14 +6796,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &897398559723949985
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 897398559723949986}
-  m_Enabled: 0
 --- !u!114 &897398559723950014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6909,6 +6902,14 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!81 &7297474831994419986
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897398559723949986}
+  m_Enabled: 1
 --- !u!1 &897398559777265770
 GameObject:
   m_ObjectHideFlags: 0
