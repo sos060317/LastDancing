@@ -8451,7 +8451,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  curHealth: 0
+  respwanTime: 10
+  respwanBackground: {fileID: 0}
+  respwanTimer: {fileID: 0}
 --- !u!1 &5560891257748309862
 GameObject:
   m_ObjectHideFlags: 0
