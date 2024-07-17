@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class EnemyPistol : EnemyBase
 {
+    [SerializeField] private AudioClip shotSound;
+
     protected override void Start()
     {
         base.Start();
@@ -30,6 +32,8 @@ public class EnemyPistol : EnemyBase
 
         // 고유 공격 패턴
         TargetingSingleShot();
+
+        SoundManager.Instance.PlaySound(shotSound, transform.position, 1);
 
         anim.SetTrigger(ShootingHash);
 

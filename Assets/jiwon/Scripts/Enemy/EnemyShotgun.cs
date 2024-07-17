@@ -7,6 +7,8 @@ public class EnemyShotgun : EnemyBase
     public int pelletCount;     // 발사할 총알 수
     public float spreadAngle; // 산탄 퍼짐 각도
 
+    [SerializeField] private AudioClip shotSound;
+
     protected override void Start()
     {
         base.Start();
@@ -32,6 +34,8 @@ public class EnemyShotgun : EnemyBase
 
         // 고유 공격 패턴
         SpreadShot(pelletCount, spreadAngle);
+
+        SoundManager.Instance.PlaySound(shotSound, transform.position, 1);
 
         anim.SetTrigger(ShootingHash);
 
