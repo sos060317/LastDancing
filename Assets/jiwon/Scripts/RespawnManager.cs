@@ -48,7 +48,7 @@ public class RespawnManager : MonoBehaviour
 
     IEnumerator StartPlayerRespawn(GameObject diePlayer)
     {
-        PV.RPC("RPC_SetActive", RpcTarget.All, diePlayer, false);
+        diePlayer.GetComponent<PlayerHealth>().PlayerSetActive(false);
         respwanBackground.gameObject.SetActive(true);
 
         while (respwanTime >= 0)
@@ -59,16 +59,10 @@ public class RespawnManager : MonoBehaviour
         }
 
         respwanBackground.gameObject.SetActive(false);
+        diePlayer.GetComponent<PlayerHealth>().PlayerSetActive(true);
         diePlayer.GetComponent<PlayerHealth>().curHealth = diePlayer.GetComponent<PlayerHealth>().maxHealth;
         respwanTime = 10.0f;
-        PV.RPC("RPC_SetActive", RpcTarget.All, diePlayer, true);
 
         yield break;
-    }
-
-    [PunRPC]
-    public void RPC_SetActive(GameObject diePlayer, bool isActive)
-    {
-        diePlayer.SetActive(isActive);
     }
 }

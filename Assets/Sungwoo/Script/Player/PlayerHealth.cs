@@ -36,4 +36,15 @@ public class PlayerHealth : MonoBehaviour
             }
         }
     }
+
+    public void PlayerSetActive(bool isActive)
+    {
+        pv.RPC(nameof(RPC_SetActive), RpcTarget.All, isActive);
+    }
+
+    [PunRPC]
+    private void RPC_SetActive(bool isActive)
+    {
+        this.gameObject.SetActive(isActive);
+    }
 }
