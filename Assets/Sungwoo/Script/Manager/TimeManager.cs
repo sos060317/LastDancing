@@ -9,10 +9,6 @@ public class TimeManager : MonoBehaviour
     public Action TimeStopAction;
     public Action TimePlayAction;
 
-    // ½ºÆ÷³Ê
-    public Action SpawnStopAction;
-    public Action SpawnPlayAction;
-
     private static TimeManager instance = null;
 
     public static TimeManager Instance
@@ -43,15 +39,5 @@ public class TimeManager : MonoBehaviour
     public void TimePlay()
     {
         TimePlayAction?.Invoke();
-    }
-
-    public void SpawnStop()
-    {
-        SpawnStopAction?.Invoke();
-    }
-
-    public void SpawnPlay()
-    {
-        SpawnPlayAction?.Invoke();
     }
 }
