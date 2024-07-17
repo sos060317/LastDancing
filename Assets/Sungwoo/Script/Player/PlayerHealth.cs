@@ -27,6 +27,11 @@ public class PlayerHealth : MonoBehaviour
         if (pv.IsMine)
         {
             UIManager.Instance.HealthUpdate(curHealth / maxHealth);
+
+            if(curHealth <= 0)
+            {
+                this.gameObject.SetActive(false);
+            }
         }
     }
 }
