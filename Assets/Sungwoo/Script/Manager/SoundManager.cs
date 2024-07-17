@@ -5,6 +5,12 @@ using System.IO;
 
 public class SoundManager : MonoBehaviour
 {
+    [SerializeField] private AudioSource soundPrefab;
+
+    private PhotonView PV;
+
+    AudioClip audioClip;
+
     #region ΩÃ±€≈Ê
     private static SoundManager instance = null;
 
@@ -16,8 +22,6 @@ public class SoundManager : MonoBehaviour
         }
     }
     #endregion
-
-    
 
     private void Awake()
     {
@@ -31,18 +35,31 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void PlaySound(AudioClip sound, Vector3 pos, float pitch = 1)
+    private void Start()
     {
-        var soundPrefab = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "SoundPrefab"), pos, Quaternion.identity)
-            .GetComponent<AudioSource>();
+        PV = GetComponent<PhotonView>();
+    }
 
-        soundPrefab.gameObject.SetActive(true);
+    public void PlaySound(AudioClip sound, Vector3 pos, float pitch)
+    {
+        audioClip = sound;
+            
+        PV.RPC(nameof(RPC_PlaySound), RpcTarget.All, pos, pitch);
+    }
 
-        soundPrefab.clip = sound;
-        soundPrefab.pitch = pitch;
+    [PunRPC]
+    private void RPC_PlaySound(Vector3 pos, float pitch)
+    {
+        var soundClip = Instantiate(soundPrefab, pos, Quaternion.identity);
 
-        StartCoroutine(StopSound(soundPrefab.gameObject, soundPrefab.clip.length));
-    } 
+        soundClip.gameObject.SetActive(true);
+
+        soundClip.clip = audioClip;
+        soundClip.pitch = pitch;
+        soundClip.Play();
+
+        StartCoroutine(StopSound(soundClip.gameObject, soundClip.clip.length));
+    }
 
     IEnumerator StopSound(GameObject soundObj, float delay)
     {
@@ -50,7 +67,7 @@ public class SoundManager : MonoBehaviour
 
         if (soundObj != null)
         {
-            PhotonNetwork.Destroy(soundObj);
+            Destroy(soundObj);
         }
     }
 }
