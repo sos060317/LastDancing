@@ -14,14 +14,14 @@ public class PlayerWeapon : MonoBehaviour, IPunObservable
     [SerializeField] private CinemachineVirtualCamera playerCamera;
     [SerializeField] private ParticleSystem shootEffect;
     [SerializeField] private AudioClip sound;
-    [SerializeField] private int maxMagazine;
+    [SerializeField] public int maxMagazine;
     [SerializeField] private float reloadTime = 1;
     [SerializeField] private AudioClip reloadSound;
     [SerializeField] private TextMeshProUGUI magazineText;
 
     public bool isReload = false;
 
-    private int curMagazine;
+    [HideInInspector] public int curMagazine;
 
     private float fireTimer = 0f;
     private float bulletSpread = 0.05f;
@@ -115,6 +115,15 @@ public class PlayerWeapon : MonoBehaviour, IPunObservable
         }
 
         #endregion
+
+        if (Input.GetKeyDown(KeyCode.R) && !isReload)
+        {
+            if (PV.IsMine)
+            {
+                SoundManager.Instance.PlaySound(reloadSound, transform.position, 1);
+                StartCoroutine(ReloadRoutine());
+            }
+        }
     }
 
     private void FireUpdate()

@@ -572,6 +572,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
+  - {fileID: 897398558551439919}
   - {fileID: 7872049963514046482}
   sceneViewId: 0
   InstantiationId: 0
@@ -601,6 +602,7 @@ MonoBehaviour:
   reloadSound: {fileID: 8300000, guid: cef0fa03af5b747f0abe82cde0b2bccc, type: 3}
   magazineText: {fileID: 0}
   isReload: 0
+  curMagazine: 0
 --- !u!114 &897398558551439918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8459,6 +8461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   curHealth: 0
+  weapon: {fileID: 897398558551439919}
 --- !u!1 &5560891257748309862
 GameObject:
   m_ObjectHideFlags: 0
