@@ -9,6 +9,8 @@ public class PlayerHealth : MonoBehaviour
     public float maxHealth;
     public float curHealth;
 
+    public bool isLive = true;
+
     private PhotonView pv;
 
     private void Start()

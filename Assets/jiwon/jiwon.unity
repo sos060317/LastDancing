@@ -254,9 +254,7 @@ MonoBehaviour:
   spawnTimer: 10
   spawnDelay: 0
   spawnCount: 0
-  enemyPrefab: {fileID: 9170653019722947671, guid: 260d89006de3a414f85ae31cac76ab91,
-    type: 3}
-  target: {fileID: 0}
+  enemyPrefabs: []
 --- !u!4 &918397437
 Transform:
   m_ObjectHideFlags: 0
@@ -707,6 +705,8 @@ GameObject:
   - component: {fileID: 1587110201}
   - component: {fileID: 1587110200}
   - component: {fileID: 1587110199}
+  - component: {fileID: 1587110206}
+  - component: {fileID: 1587110205}
   m_Layer: 0
   m_Name: Enemy Shotgun
   m_TagString: Untagged
@@ -744,7 +744,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 11.69
-  scanRange: 0
+  firstScanRange: 0
+  currentScanRange: 0
   fireSpeed: 50
   fireTimer: 0
   fireDelay: 2
@@ -752,13 +753,18 @@ MonoBehaviour:
   bulletPrefab: {fileID: 237179926793995451, guid: 71ea937c8b0cda54ba2df223434c63c9,
     type: 3}
   dieEffect: {fileID: 0}
+  expPrefab: {fileID: 0}
   firePoint: {fileID: 1818506857}
   targetLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  obstructionMask:
     serializedVersion: 2
     m_Bits: 0
   target: {fileID: 0}
   pelletCount: 16
   spreadAngle: 30
+  shotSound: {fileID: 0}
 --- !u!114 &1587110200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,6 +852,44 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 88
   m_CollisionDetection: 0
+--- !u!114 &1587110205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587110197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &1587110206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587110197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1609391809
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,8 +1130,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20146c23d2b6ab0449f05ab04f836cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentKillCount: 0
+  clearKillCount: 0
+  currentSurvivalTime: 0
+  clearSurvivalTime: 0
+  gameClearHandler: {fileID: 0}
   mainCamera: {fileID: 1566035066}
   curPlayer: {fileID: 352807927}
+  killText: {fileID: 0}
+  survivalTimeText: {fileID: 0}
+  inGameKillText: {fileID: 0}
+  inGameSurvivalTimeText: {fileID: 0}
 --- !u!4 &9008509244112558620
 Transform:
   m_ObjectHideFlags: 0
