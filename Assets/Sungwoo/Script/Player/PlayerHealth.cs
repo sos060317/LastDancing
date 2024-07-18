@@ -10,8 +10,6 @@ public class PlayerHealth : MonoBehaviour
     public float curHealth;
     public PlayerWeapon weapon;
 
-    public bool isLive = true;
-
     private PhotonView pv;
 
     private void Start()
