@@ -48,7 +48,7 @@ public class EnemySpawner : MonoBehaviourPun
     /// </summary>
     private void EnemySpawn()
     {
-        spawnCount = Random.Range(1, 5);
+        spawnCount = Random.Range(1, 3);
 
         for (int i = 0; i < spawnCount; i++)
         {
@@ -60,7 +60,7 @@ public class EnemySpawner : MonoBehaviourPun
 
             if(NavMesh.SamplePosition(randPos, out hit, 10.0f, 1))
             {
-                PhotonNetwork.Instantiate(enemyPrefabs[2], randPos, Quaternion.identity);
+                PhotonNetwork.Instantiate(randomEnemy, randPos, Quaternion.identity);
             }
         }
     }

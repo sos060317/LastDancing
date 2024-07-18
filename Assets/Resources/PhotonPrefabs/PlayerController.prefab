@@ -8462,6 +8462,7 @@ MonoBehaviour:
   maxHealth: 100
   curHealth: 0
   weapon: {fileID: 897398558551439919}
+  isLive: 1
 --- !u!1 &5560891257748309862
 GameObject:
   m_ObjectHideFlags: 0

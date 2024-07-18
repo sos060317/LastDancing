@@ -42,6 +42,9 @@ public class GrenadeItem : ItemFunctionBase
         {
             for (int i = 0; i < itemDetails.itemData[curLevel].itemCount; i++)
             {
+                if (!GameManager.Instance.curPlayer.gameObject.activeSelf)
+                    continue;
+
                 GenerationGrenade();
             }
 

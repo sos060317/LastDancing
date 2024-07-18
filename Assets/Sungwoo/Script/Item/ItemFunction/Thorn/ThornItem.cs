@@ -61,6 +61,9 @@ public class ThornItem : ItemFunctionBase
 
             for (int i = 0; i < 7; i++)
             {
+                if (!GameManager.Instance.curPlayer.gameObject.activeSelf)
+                    break;
+
                 //Instantiate(thornPrefab, dir.normalized * (i + 1) + startPos, Quaternion.identity);
                 var thorn = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "ItemPrefab", "Thorn"),
                     player.position + (dir.normalized * (i + 1) + startPos), Quaternion.identity).GetComponent<Thorn>();
