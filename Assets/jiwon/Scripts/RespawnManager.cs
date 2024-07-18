@@ -39,6 +39,8 @@ public class RespawnManager : MonoBehaviour
     private void Start()
     {
         PV = GetComponent<PhotonView>();
+
+        respwanTime *= GameManager.Instance.players.Count;
     }
 
     public void PlayerRespawn(GameObject diePlayer)
@@ -62,7 +64,7 @@ public class RespawnManager : MonoBehaviour
         respwanBackground.gameObject.SetActive(false);
         diePlayer.GetComponent<PlayerHealth>().PlayerSetActive(true);
         diePlayer.GetComponent<PlayerHealth>().curHealth = diePlayer.GetComponent<PlayerHealth>().maxHealth;
-        respwanTime = 10.0f;
+        respwanTime = 10.0f * GameManager.Instance.players.Count;
 
         yield break;
     }
