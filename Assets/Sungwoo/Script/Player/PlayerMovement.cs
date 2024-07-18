@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera cinemachine;
     [SerializeField] private CinemachineBrain brain;
     [SerializeField] private Transform cameraLookAt;
+    [SerializeField] private AudioListener al;
 
     private float turnSpeedMultiplier;
 
@@ -33,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         if (!PV.IsMine)
         {
             mainCamera.GetUniversalAdditionalCameraData().renderType = CameraRenderType.Overlay;
+            al.enabled = false;
             Destroy(cinemachine.transform.gameObject);
             Destroy(brain);
             return;

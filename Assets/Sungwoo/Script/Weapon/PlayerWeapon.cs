@@ -2,8 +2,10 @@ using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using Cinemachine;
 using Photon.Pun;
+using System.Collections;
+using TMPro;
 
-public class PlayerWeapon : MonoBehaviour
+public class PlayerWeapon : MonoBehaviour, IPunObservable
 {
     [SerializeField] private float fireRate;
     [SerializeField] private TestBullet bulletPrefab;
@@ -12,6 +14,14 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera playerCamera;
     [SerializeField] private ParticleSystem shootEffect;
     [SerializeField] private AudioClip sound;
+    [SerializeField] public int maxMagazine;
+    [SerializeField] private float reloadTime = 1;
+    [SerializeField] private AudioClip reloadSound;
+    [SerializeField] private TextMeshProUGUI magazineText;
+
+    public bool isReload = false;
+
+    [HideInInspector] public int curMagazine;
 
     private float fireTimer = 0f;
     private float bulletSpread = 0.05f;
@@ -32,8 +42,13 @@ public class PlayerWeapon : MonoBehaviour
             return;
         }
 
+        curMagazine = maxMagazine;
+
         recoil = GetComponent<WeaponRecoil>();
         recoil.playerCamera = playerCamera;
+
+        magazineText = GameManager.Instance.magazineText;
+        magazineText.text = curMagazine + " / " + maxMagazine;
     }
 
     private void OnEnable()
@@ -100,12 +115,22 @@ public class PlayerWeapon : MonoBehaviour
         }
 
         #endregion
+
+        if (Input.GetKeyDown(KeyCode.R) && !isReload)
+        {
+            if (PV.IsMine)
+            {
+                SoundManager.Instance.PlaySound(reloadSound, transform.position, 1);
+                StartCoroutine(ReloadRoutine());
+            }
+        }
     }
 
     private void FireUpdate()
     {
         // 총알 발사
-        if (fireTimer >= fireRate && isFiring && aimingRigLayer.weight >= 1) // 조준 애니메이션 실행후 발사하긴위한 aimingRigLayer.weight >= 1
+        // 조준 애니메이션 실행후 발사하긴위한 aimingRigLayer.weight >= 1
+        if (fireTimer >= fireRate && isFiring && aimingRigLayer.weight >= 1 && !isReload) 
         {
             //ShotBullet();
             PV.RPC(nameof(ShotBullet), RpcTarget.All);
@@ -129,12 +154,55 @@ public class PlayerWeapon : MonoBehaviour
     {
         Instantiate(bulletPrefab, shotPos.position, transform.rotation).Init(bulletSpread);
 
+        curMagazine--;
+
         if (PV.IsMine)
         {
             recoil.GenerateRecoil();
-            SoundManager.Instance.PlaySound(sound, shotPos.position, Random.Range(0.85f, 1.1f));
+            SoundManager.Instance.PlaySound(sound, transform.position, Random.Range(0.85f, 1.1f));
+
+            if (curMagazine <= 0)
+            {
+                SoundManager.Instance.PlaySound(reloadSound, transform.position, 1);
+                StartCoroutine(ReloadRoutine());
+            }
+
+            magazineText.text = curMagazine + " / " + maxMagazine;
         }
 
         shootEffect.Emit(30);
+    }
+    
+    private IEnumerator ReloadRoutine()
+    {
+        isReload = true;
+
+        yield return YieldInstructionCache.WaitForSeconds(reloadTime);
+
+        isReload = false;
+
+        curMagazine = maxMagazine;
+        magazineText.text = curMagazine + " / " + maxMagazine;
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(this.curMagazine);
+            stream.SendNext(this.maxMagazine);
+        }
+        else if (stream.IsReading)
+        {
+            try
+            {
+                curMagazine = (int)stream.ReceiveNext();
+                maxMagazine = (int)stream.ReceiveNext();
+            }
+            catch
+            {
+
+            }
+        }
     }
 }
