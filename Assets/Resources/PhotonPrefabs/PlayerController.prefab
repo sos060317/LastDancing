@@ -8452,7 +8452,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   curHealth: 0
-  isLive: 0
 --- !u!1 &5560891257748309862
 GameObject:
   m_ObjectHideFlags: 0
