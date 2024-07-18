@@ -1,4 +1,5 @@
 using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -23,10 +24,13 @@ public class GameManager : MonoBehaviour
     public float clearSurvivalTime;
 
     public Transform gameClearHandler;
+    public Transform gameOverHandler;
 
     public Camera mainCamera;
 
     public Transform curPlayer;
+
+    public List<GameObject> players = new List<GameObject>();
 
     [SerializeField] private TMP_Text killText;
     [SerializeField] private TMP_Text survivalTimeText;
@@ -50,6 +54,7 @@ public class GameManager : MonoBehaviour
     {
         InitializationStageClearCondition();
         Debug.Log(StageInformation.Instance.clearCondition.SetDescription());
+        Debug.Log(players.Count);
     }
 
     private void Update()
@@ -96,5 +101,19 @@ public class GameManager : MonoBehaviour
 
             gameClearHandler.gameObject.SetActive(true);
         }
+    }
+
+    public void CheckAllPlayerDie()
+    {
+        foreach (GameObject player in players)
+        {
+            if (player.transform.GetChild(0).gameObject.activeSelf)
+                return;
+        }
+
+        RespawnManager.Instance.respwanBackground.gameObject.SetActive(false);
+        gameOverHandler.gameObject.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 }

@@ -26,6 +26,7 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     private void CreateController()
     {
-        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), Vector3.zero, Quaternion.identity);
+        GameObject player = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), Vector3.zero, Quaternion.identity);
+        GameManager.Instance.players.Add(player);
     }
 }

@@ -19,7 +19,7 @@ public class RespawnManager : MonoBehaviour
 
     [SerializeField] private float respwanTime = 10.0f;
 
-    [SerializeField] private Image respwanBackground;
+    public Image respwanBackground;
     [SerializeField] private TMP_Text respwanTimer;
 
     PhotonView PV;
@@ -49,8 +49,9 @@ public class RespawnManager : MonoBehaviour
     IEnumerator StartPlayerRespawn(GameObject diePlayer)
     {
         diePlayer.GetComponent<PlayerHealth>().PlayerSetActive(false);
-        diePlayer.GetComponent<PlayerHealth>().isLive = false;
         respwanBackground.gameObject.SetActive(true);
+
+        GameManager.Instance.CheckAllPlayerDie();
 
         while (respwanTime >= 0)
         {
@@ -60,7 +61,6 @@ public class RespawnManager : MonoBehaviour
         }
 
         respwanBackground.gameObject.SetActive(false);
-        diePlayer.GetComponent<PlayerHealth>().isLive = true;
         diePlayer.GetComponent<PlayerHealth>().PlayerSetActive(true);
         diePlayer.GetComponent<PlayerHealth>().curHealth = diePlayer.GetComponent<PlayerHealth>().maxHealth;
         respwanTime = 10.0f;
