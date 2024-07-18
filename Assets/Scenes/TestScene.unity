@@ -1446,7 +1446,7 @@ MonoBehaviour:
   gameOverHandler: {fileID: 724935700}
   mainCamera: {fileID: 0}
   curPlayer: {fileID: 0}
-  players: []
+  players: 
   killText: {fileID: 1372914124}
   survivalTimeText: {fileID: 566011047}
   inGameKillText: {fileID: 1185976500}
@@ -204138,7 +204138,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e493c6f6bbc0dd141b5cc0ee78121a8f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0

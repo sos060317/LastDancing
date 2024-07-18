@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using System.IO;
+using Photon.Realtime;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -11,11 +12,8 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         PV = GetComponent<PhotonView>();
-    }
 
-    private void Start()
-    {
-        if(PV.IsMine)
+        if (PV.IsMine)
         {
             CreateController();
         }
@@ -27,6 +25,12 @@ public class PlayerManager : MonoBehaviour
     private void CreateController()
     {
         GameObject player = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), Vector3.zero, Quaternion.identity);
+        PV.RPC(nameof(RPC_AddPlayer), RpcTarget.All, player.transform.GetChild(0).gameObject.activeSelf);
+    }
+
+    [PunRPC]
+    private void RPC_AddPlayer(bool player)
+    {
         GameManager.Instance.players.Add(player);
     }
 }

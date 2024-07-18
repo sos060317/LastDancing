@@ -51,10 +51,9 @@ public class RespawnManager : MonoBehaviour
         diePlayer.GetComponent<PlayerHealth>().PlayerSetActive(false);
         respwanBackground.gameObject.SetActive(true);
 
-        GameManager.Instance.CheckAllPlayerDie();
-
         while (respwanTime >= 0)
         {
+            GameManager.Instance.CheckAllPlayerDie();
             respwanTime -= Time.deltaTime;
             respwanTimer.text = ((int)respwanTime).ToString();
             yield return Time.deltaTime;
