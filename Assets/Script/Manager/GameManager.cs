@@ -111,6 +111,7 @@ public class GameManager : MonoBehaviour
                 return;
         }
 
+        TimeManager.Instance.TimeStop();
         RespawnManager.Instance.respwanBackground.gameObject.SetActive(false);
         gameOverHandler.gameObject.SetActive(true);
         Cursor.visible = true;
