@@ -22,6 +22,7 @@ public class EnemySpawner : MonoBehaviourPun
         {
             Path.Combine("PhotonPrefabs", "Enemy", "Enemy Pistol"),
             Path.Combine("PhotonPrefabs", "Enemy", "Enemy Shotgun"),
+            Path.Combine("PhotonPrefabs", "Enemy", "Enemy Rifle"),
         };
 
         spawnDelay = spawnTimer - 3.0f;
@@ -59,7 +60,7 @@ public class EnemySpawner : MonoBehaviourPun
 
             if(NavMesh.SamplePosition(randPos, out hit, 10.0f, 1))
             {
-                PhotonNetwork.Instantiate(randomEnemy, randPos, Quaternion.identity);
+                PhotonNetwork.Instantiate(enemyPrefabs[2], randPos, Quaternion.identity);
             }
         }
     }
