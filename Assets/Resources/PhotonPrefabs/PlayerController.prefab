@@ -596,6 +596,11 @@ MonoBehaviour:
   playerCamera: {fileID: 897398559557931235}
   shootEffect: {fileID: 897398559472296947}
   sound: {fileID: 8300000, guid: 65201ddabb4144f6a8fb9480120b7656, type: 3}
+  maxMagazine: 30
+  reloadTime: 3
+  reloadSound: {fileID: 8300000, guid: cef0fa03af5b747f0abe82cde0b2bccc, type: 3}
+  magazineText: {fileID: 0}
+  isReload: 0
 --- !u!114 &897398558551439918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8361,6 +8366,7 @@ MonoBehaviour:
   cinemachine: {fileID: 897398559557931235}
   brain: {fileID: 897398559723950014}
   cameraLookAt: {fileID: 897398558824950387}
+  al: {fileID: 7297474831994419986}
   PV: {fileID: 1956040003011816538}
 --- !u!114 &5560879418306639066
 MonoBehaviour:
@@ -8377,6 +8383,7 @@ MonoBehaviour:
   aimDuration: 0.1
   aimingRigLayer: {fileID: 897398559939438684}
   bodyRigLayer: {fileID: 897398559567779444}
+  weapon: {fileID: 897398558551439919}
 --- !u!114 &5560879418306639067
 MonoBehaviour:
   m_ObjectHideFlags: 0

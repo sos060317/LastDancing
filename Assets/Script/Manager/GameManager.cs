@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text survivalTimeText;
     [SerializeField] private TMP_Text inGameKillText;
     [SerializeField] private TMP_Text inGameSurvivalTimeText;
+    public TextMeshProUGUI magazineText;
 
     private void Awake()
     {

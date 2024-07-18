@@ -7,6 +7,7 @@ public class PlayerRigController : MonoBehaviour
     [SerializeField] private float aimDuration = 0.3f;
     [SerializeField] private Rig aimingRigLayer;
     [SerializeField] private Rig bodyRigLayer;
+    [SerializeField] private PlayerWeapon weapon;
 
     private bool isStop;
 
