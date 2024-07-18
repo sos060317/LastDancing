@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     public Transform curPlayer;
 
-    public List<GameObject> players = new List<GameObject>();
+    public List<bool> players = new List<bool>();
 
     [SerializeField] private TMP_Text killText;
     [SerializeField] private TMP_Text survivalTimeText;
@@ -105,9 +105,9 @@ public class GameManager : MonoBehaviour
 
     public void CheckAllPlayerDie()
     {
-        foreach (GameObject player in players)
+        foreach (bool player in players)
         {
-            if (player.transform.GetChild(0).gameObject.activeSelf)
+            if (player)
                 return;
         }
 
