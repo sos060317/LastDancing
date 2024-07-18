@@ -48,7 +48,7 @@ public class EnemySpawner : MonoBehaviourPun
     /// </summary>
     private void EnemySpawn()
     {
-        spawnCount = Random.Range(1, 3);
+        spawnCount = Random.Range(1, 3) * GameManager.Instance.players.Count;
 
         for (int i = 0; i < spawnCount; i++)
         {
