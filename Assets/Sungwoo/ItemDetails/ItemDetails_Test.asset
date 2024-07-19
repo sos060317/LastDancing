@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemImage: {fileID: 7482667652216324306, guid: b595d4e67b4aa51499f836388ac30955,
     type: 3}
-  itemName: "\uBD84\uD65C \uC218\uB958\uD0C4"
+  itemName: "\uBD84\uD560 \uC218\uB958\uD0C4"
   itemPathName: GrenadeItem
   itemData:
   - itemCount: 1
